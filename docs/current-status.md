@@ -1,6 +1,6 @@
 # Estado actual — Ground Control
 
-Actualización: 2026-10-19, inicio de arquitectura.
+Actualización: 2026-10-19, correcciones de revisión y sincronización del Project.
 
 ## Producto y entrega
 
@@ -9,6 +9,8 @@ PR #65 integrado: cockpit con cinco regiones, jerarquía visual y tres conceptos
 Sonda publicada por PR #63 (80db320): https://alearra.github.io/ground-control-scooter/. No es todavía el cockpit ni una integración Xiaomi. PR #64 documental de publicación permanece pendiente de conciliación; no usar sus textos anteriores como estado más reciente.
 
 Base provisional del cockpit en PR #67 (rama `feature/nextjs-foundation`): Next.js 16 App Router con las cinco regiones (barra superior, área del vehículo, mapa, barra inferior, panel contextual) y estado inicial vacío y explícito. Sólo lectura de presencia de APIs tras montar; sin GPS, ubicación, Bluetooth ni persistencia. La sonda sigue publicada por Pages, que no cambió.
+
+Tras la revisión del AI PM, el PR #67 aplicó tres correcciones (commit 8c008c2): la barra superior etiqueta presencia de API y funciones inactivas en tono neutro y declara la conectividad como informada por el navegador; el área del vehículo separa avisos de app de «Diagnóstico del scooter: no disponible»; y el panel contextual dejó de superponerse a la barra inferior, reservando espacio real sin altura supuesta. Informe: [revisión 2026-10-19](reviews/2026-10-19-nextjs-foundation.md).
 
 ## Evidencia física disponible
 
@@ -24,10 +26,10 @@ La elección del framework Next.js fue aprobada explícitamente por Alejandro; o
 
 ## Seguimiento
 
-[Project #6](https://github.com/users/alearra/projects/6): 60 tareas del roadmap, GC-007 completada. No se reconsultaron todos sus estados en esta actualización; no afirmar que las demás siguen en Backlog (GC-004 fue reportada Blocked a la espera de prueba, y ahora tiene evidencia parcial).
+[Project #6](https://github.com/users/alearra/projects/6): 60 tareas del roadmap. Sincronizado con escrituras acotadas, reutilizando items y conservando Phase/Priority/GC ID: GC-001/#1 y GC-002/#2 en **Review** (inventario declarado); GC-003/#3 sigue abierta sin cambio; GC-004/#4 en **Review** por evidencia parcial (ya no Blocked); GC-005/#5 y GC-006/#6 en **In progress**; GC-007/#7 **Done**; GC-010/#8 en **In progress**; GC-020/#13 en **Review**. Todos con Evidence enlazada. La API de Projects permitió escribir sin errores; no se creó otro Project ni se duplicaron items.
 
-GC-001/002/003/004 siguen abiertas según último estado reportado. GC-003 sin lectura del scooter; GC-004 evidencia parcial recibida, no cierre. GC-005/006 no se cierran al elegir frontend: la vía Xiaomi/proveedor/costos siguen pendientes.
+GC-001/002/003/004 siguen abiertas. GC-003 sin lectura del scooter; GC-004 con evidencia parcial (GPS visible; continuidad con pantalla bloqueada no validada), no cierre. GC-005/006 no se cierran: elegir frontend no resuelve PWA vs puente nativo ni el proveedor de mapas/costos. Se corrigió el cuerpo obsoleto de #8 (enlazaba rama antigua y afirmaba arquitectura pausada).
 
 ## Próximo paso
 
-Revisión del AI PM sobre el PR de la base Next.js: confirmar alcance, límites honestos y verificaciones; luego decidir próximos pasos (proveedor de mapas, integración Xiaomi, despliegue runtime) sin cerrar GC-003/GC-004 por este scaffold.
+Revisión del AI PM sobre las correcciones del PR #67 (head 8c008c2) y el estado del Project: validar correcciones, evidencia y sincronización antes de decidir merge. Sin cerrar GC-003/GC-004 ni tareas de F0/F1 por este trabajo.
