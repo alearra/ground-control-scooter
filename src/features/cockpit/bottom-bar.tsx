@@ -25,7 +25,8 @@ const ACCESSES: ReadonlyArray<{ id: PanelId; label: string; hint: string }> = [
 
 /**
  * Barra inferior: accesos contextuales. Cada botón abre un panel sin recargar
- * la página. Ninguno inicia GPS, Bluetooth ni permisos.
+ * la página. Ninguno inicia GPS, Bluetooth ni permisos. Cada control respeta un
+ * área táctil de al menos 44×44 CSS px.
  */
 export function BottomBar({
   openPanel,
@@ -39,7 +40,7 @@ export function BottomBar({
   return (
     <nav
       aria-label="Accesos del cockpit"
-      className="safe-bottom flex items-stretch gap-1 border-t border-line bg-surface px-2 pt-2"
+      className="safe-bottom flex shrink-0 items-stretch gap-1 border-t border-line bg-surface px-2 pt-1"
     >
       {ACCESSES.map((access) => {
         const isOpen = openPanel === access.id;
@@ -47,21 +48,18 @@ export function BottomBar({
           <button
             key={access.id}
             type="button"
-            ref={(element) => registerTrigger(access.id, element)}
-            onClick={() => onToggle(access.id)}
             aria-expanded={isOpen}
-            aria-controls="context-panel"
-            aria-describedby={`access-hint-${access.id}`}
-            className={`flex flex-1 flex-col items-center gap-1 rounded-xl px-2 py-2 text-xs transition-colors ${
+            aria-controls={isOpen ? "context-panel" : undefined}
+            title={access.hint}
+            onClick={() => onToggle(access.id)}
+            ref={(element) => registerTrigger(access.id, element)}
+            className={`flex min-h-11 min-w-[44px] flex-1 flex-col items-center justify-center rounded-lg px-1 py-1.5 text-xs font-medium transition-colors ${
               isOpen
-                ? "bg-surface-2 text-fg"
-                : "text-muted hover:bg-surface-2/60 hover:text-fg"
+                ? "bg-accent/15 text-accent"
+                : "text-muted hover:bg-surface-2 hover:text-fg"
             }`}
           >
-            <span className="font-medium">{access.label}</span>
-            <span id={`access-hint-${access.id}`} className="sr-only">
-              {access.hint}
-            </span>
+            {access.label}
           </button>
         );
       })}

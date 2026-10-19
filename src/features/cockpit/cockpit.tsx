@@ -15,9 +15,11 @@ import { VehicleArea } from "./vehicle-area";
  * Layout y página siguen siendo Server Components. No inicia GPS, Bluetooth,
  * wake lock ni persistencia: sólo lee la presencia de APIs tras montar.
  *
- * El panel contextual vive dentro de `main`, entre el mapa y la barra
- * inferior, para reservar espacio real: la barra de accesos nunca queda
- * cubierta y sigue siendo utilizable para cambiar o cerrar el panel.
+ * Jerarquía vertical: los instrumentos persistentes (barra superior e
+ * instrumentos del vehículo) y la barra de accesos quedan **fuera** de `main`.
+ * `main` aloja sólo la región flexible mapa/panel y es la única que se
+ * desplaza cuando falta altura o el texto está ampliado; por eso un panel
+ * abierto o su scroll nunca pueden desplazar los instrumentos fuera de vista.
  */
 export function Cockpit() {
   const [panel, setPanel] = useState<PanelId | null>(null);
@@ -57,12 +59,17 @@ export function Cockpit() {
 
   return (
     <div className="flex h-dvh flex-col bg-bg text-fg">
-      <TopBar time={clock} capabilities={capabilities} />
+      <TopBar time={clock} online={capabilities.online} />
+      <VehicleArea />
 
       <main className="flex min-h-0 flex-1 flex-col gap-2 overflow-y-auto p-2">
-        <VehicleArea />
-        <MapRegion />
-        <ContextPanel panel={panel} onClose={closePanel} />
+        <MapRegion compact={panel !== null} />
+        <ContextPanel
+          panel={panel}
+          onClose={closePanel}
+          capabilities={capabilities}
+          time={clock}
+        />
       </main>
 
       <BottomBar

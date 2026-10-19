@@ -25,6 +25,23 @@ function presence(value: boolean): Presence {
   return value ? "present" : "absent";
 }
 
+/** Etiqueta de presencia de una API. «sin comprobar» antes de montar. */
+export function presenceLabel(presence: Presence): string {
+  if (presence === "present") return "API presente";
+  if (presence === "absent") return "API ausente";
+  return "Sin comprobar";
+}
+
+/**
+ * Estado de conectividad informado por el navegador. No es una comprobación de
+ * acceso real a Internet: se declara como lo que informa el navegador.
+ */
+export function connectivityLabel(presence: Presence): string {
+  if (presence === "present") return "En línea (navegador)";
+  if (presence === "absent") return "Sin conexión (navegador)";
+  return "Sin comprobar";
+}
+
 /**
  * Lee la presencia de APIs del navegador recién después de montar.
  * El primer render (servidor e hidratación) siempre usa «unknown» para evitar
