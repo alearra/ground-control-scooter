@@ -393,6 +393,31 @@ test("Wake: liberación manual se cuenta una vez, sin doble conteo por evento re
   assert.equal(out.wake_lock.state, "idle");
 });
 
+test("Wake: una resolución obsoleta no libera la guardia pending de la sesión nueva", async () => {
+  const env = createEnv();
+  env.elements["wake-on"].click(); // solicitud A (queda pendiente)
+  env.elements["reset-btn"].click(); // invalida A
+
+  env.elements["wake-on"].click(); // solicitud B
+  assert.equal(env.wake.requestCount, 2);
+
+  const lateA = makeSentinel();
+  env.wake.resolveNext(lateA); // resuelve A (obsoleta)
+  await flush();
+  assert.equal(lateA.released, true);
+
+  env.elements["wake-on"].click(); // no debe crear una tercera solicitud
+  assert.equal(env.wake.requestCount, 2, "la guardia pending sigue vigente");
+
+  const sentinelB = makeSentinel();
+  env.wake.resolveNext(sentinelB);
+  await flush();
+
+  const out = readExport(env);
+  assert.equal(out.wake_lock.grants, 1);
+  assert.equal(out.wake_lock.state, "active");
+});
+
 // ---- Exportación ----
 
 test("Export: separa captura y recepción, agrega intervalos y no incluye datos sensibles", async () => {

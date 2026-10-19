@@ -423,8 +423,8 @@
 
     Promise.resolve(request).then(function (sentinel) {
       if (gen !== wakeGen || !userWantsWakeLock) {
-        // Resolución tardía de una sesión/intención anterior: liberar sin activar.
-        wakePending = false;
+        // Resolución tardía de una sesión/intención anterior: liberar sin activar
+        // y sin tocar el estado pending de una sesión nueva.
         releaseQuietly(sentinel);
         return;
       }
