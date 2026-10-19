@@ -42,11 +42,11 @@ Este inventario alimenta la [matriz de capacidades](capability-matrix.md) y la [
 | Región de la cuenta | Argentina | Declaración de Alejandro, 2026-10-19 |
 | Modelo comercial | Xiaomi 6 Ultra | Declaración de Alejandro, 2026-10-19 |
 | Modelo interno o variante | DDHBC01xb (código informado; conservar grafía original) | Declaración de Alejandro, 2026-10-19; confirmar etiqueta/variante si hace falta |
-| Firmware del scooter | Pendiente | Xiaomi Home > info del dispositivo |
+| Firmware del scooter | 2.7.1_0112.0066 | Declaración de Alejandro, 2026-10-19; sin prueba de compatibilidad |
 | ¿Aparece en Xiaomi Home con datos? | Desconocido | Observación en la app |
 
 ## 4. Estado de las tareas
 
 - GC-001 (#1): **abierta**, inventario parcial recibido: iPhone 11, iOS declarado 27.0.1, Safari y orientación vertical. Pendientes versión exacta del navegador y tipo de soporte. Pruebas de capacidades se gestionan en GC-003/004; no son requisito para registrar un dato declarado.
-- GC-002 (#2): **abierta**, región Argentina, Xiaomi Home V11.8.204, modelo comercial y código informados. Falta firmware; el código de modelo no se interpreta como firmware.
+- GC-002 (#2): **abierta**, región Argentina, Xiaomi Home V11.8.204, modelo comercial y código informados. Firmware informado: 2.7.1_0112.0066. Inventario mínimo del scooter recibido; pendiente de revisión/cierre con evidencia documental. El código de modelo no se interpreta como firmware.
 - No cerrar ninguna hasta validar datos reales y obtener evidencia revisable.
