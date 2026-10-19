@@ -123,3 +123,11 @@ Medidas:
 ## Siguiente paso
 
 Revisión del AI PM sobre este incremento corregido (PR #68). Pendientes de F1 (no incluidos): flujos de Hangar/misiones/debrief, wireframes parado/en marcha, iconos definitivos y validación en Safari físico.
+
+## Revisión AI PM — head abcd78f
+
+Persistencia resuelta: VehicleArea es hermano de main, instrumentos sin shrink y panel sin recorte silencioso. El AI PM reprodujo TypeScript, Biome y build del código actualizado: correctos. Revisó las capturas de scroll forzado y ampliación; no repitió los 91 checks interactivos ni la sonda.
+
+**Cambios requeridos: ampliación de texto.** La captura zoom200-panel-vehiculo.png muestra etiquetas de los cuatro accesos superpuestas y no muestra el contenido del panel Vehículo abierto. Las medidas reportadas de Cerrar (y=492–580) y barra (desde y=552) tampoco acreditan un control completamente visible sin interferencias. Estar enfocado no prueba visibilidad ni que el control sea accionable. El ancho de documento y escala rem están correctamente diferenciados de viewport y zoom nativo.
+
+Corrección delimitada en [prompt 009](../../prompts/009-cockpit-text-zoom-review.md): etiquetas legibles, controles/detalles alcanzables al 200% y evidencia del panel abierto; permitir desplazamiento de página como degradación accesible cuando no queda altura. No exige todos los instrumentos fijos a cualquier ampliación. Sin merge/deploy ni nuevas pruebas físicas solicitadas a Alejandro. GC-010 permanece Review.
