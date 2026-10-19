@@ -25,3 +25,9 @@ Al terminar, guardar URL/ID reales aquí y en README/current-status. La creació
 ## Cierre de trabajo
 
 El AI PM actualiza estados con evidencia durante las sesiones. Issue cerrada por criterios cumplidos → Done; reabierta → revisar estado. No existe sincronización automática hasta configurarla y probarla.
+
+## Ejecución mediante OpenCode
+
+Alejandro autorizó también esta alternativa el 2026-10-19. El navegador consultado no tiene sesión GitHub iniciada; no se solicitó login porque puede ejecutarse localmente.
+
+Usar [prompts/001-github-project-setup.md](../prompts/001-github-project-setup.md) en OpenCode + Big Pickle. Incluye comprobación de acceso, creación/reutilización, importación sin duplicados, campos/estados, verificación y handoff. El Project sigue pendiente hasta recibir evidencia y URL reales. Si la CLI/API no soporta las vistas propuestas, informar esa parte como pendiente de UI.
