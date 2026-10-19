@@ -18,4 +18,6 @@ GC-007 (#7): Done: repositorio e instrucciones preparados, decisiones registrada
 
 ## Próxima acción
 
-Abrir [prompts/000-discovery.md](../prompts/000-discovery.md) en OpenCode con Big Pickle. No ejecutar el roadmap completo ni elegir stack antes de F0.
+Primero ejecutar [prompts/001-github-project-setup.md](../prompts/001-github-project-setup.md) en OpenCode con Big Pickle para crear/verificar el Project. El navegador del AI PM no tiene sesión iniciada y Alejandro autorizó la alternativa local. El tablero continúa pendiente de evidencia; las 60 issues ya existen.
+
+Después de revisar ese resultado, usar [prompts/000-discovery.md](../prompts/000-discovery.md) para inventario. No ejecutar el roadmap completo ni elegir stack antes de F0.
