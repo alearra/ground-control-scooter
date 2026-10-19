@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="dark">
+  <title>Sonda de capacidades — iPhone 11 (F0 · GC-004)</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="probe">
+    <header class="probe__header">
+      <p class="probe__eyebrow">Ground Control · F0 · GC-004</p>
+      <h1>Sonda de capacidades</h1>
+      <p class="probe__subtitle">GPS, disponibilidad de Bluetooth, pantalla activa y retorno desde segundo plano.</p>
+      <p class="probe__warning" role="note">
+        Sonda temporal de un solo experimento. No es el cockpit ni la app de producción.
+        No lee el scooter, no pide claves y no envía datos a ninguna red.
+      </p>
+    </header>
+
+    <section class="card" aria-labelledby="ctx-title">
+      <h2 id="ctx-title">Contexto de la prueba</h2>
+      <dl class="kv">
+        <dt>Fecha y hora de apertura</dt>
+        <dd id="ctx-date">—</dd>
+        <dt>Contexto seguro (HTTPS)</dt>
+        <dd id="ctx-secure">—</dd>
+        <dt>Origen</dt>
+        <dd id="ctx-origin">—</dd>
+        <dt>Pista de navegador</dt>
+        <dd id="ctx-ua">—</dd>
+      </dl>
+      <p class="hint">
+        Dispositivo declarado (sin verificar por esta sonda): iPhone 11, iOS 27.0.1, Safari.
+        La pista de navegador no confirma la versión exacta de Safari/iOS.
+      </p>
+    </section>
+
+    <section class="card" aria-labelledby="apis-title">
+      <h2 id="apis-title">Detección de APIs</h2>
+      <ul class="api-list" id="api-list">
+        <li class="api" data-api="geolocation">
+          <span class="api__name">Geolocation</span>
+          <span class="api__state badge" id="api-geolocation">Comprobando…</span>
+        </li>
+        <li class="api" data-api="bluetooth">
+          <span class="api__name">navigator.bluetooth</span>
+          <span class="api__state badge" id="api-bluetooth">Comprobando…</span>
+        </li>
+        <li class="api" data-api="wakeLock">
+          <span class="api__name">navigator.wakeLock</span>
+          <span class="api__state badge" id="api-wakeLock">Comprobando…</span>
+        </li>
+      </ul>
+      <p class="hint" id="bluetooth-note"></p>
+    </section>
+
+    <section class="card" aria-labelledby="gps-title">
+      <h2 id="gps-title">GPS del teléfono (primer plano)</h2>
+      <p class="hint">No se muestran ni guardan coordenadas, rutas ni altitud. Solo contadores, precisión y tiempos.</p>
+      <div class="controls">
+        <button type="button" id="gps-start" class="btn btn--primary">Iniciar GPS</button>
+        <button type="button" id="gps-stop" class="btn btn--danger" disabled>Detener GPS</button>
+      </div>
+      <p class="state" id="gps-state" data-state="idle">Prueba sin iniciar</p>
+      <dl class="kv">
+        <dt>Muestras recibidas</dt>
+        <dd id="gps-count">0</dd>
+        <dt>Precisión de la última muestra</dt>
+        <dd id="gps-accuracy">—</dd>
+        <dt>Antigüedad de la última muestra</dt>
+        <dd id="gps-age">—</dd>
+        <dt>Velocidad</dt>
+        <dd id="gps-speed">—</dd>
+        <dt>Precisión agregada (mín / media / máx)</dt>
+        <dd id="gps-accuracy-agg">—</dd>
+      </dl>
+    </section>
+
+    <section class="card" aria-labelledby="wake-title">
+      <h2 id="wake-title">Pantalla activa (Wake Lock)</h2>
+      <p class="hint">No equivale a ejecución garantizada con la pantalla bloqueada. Solo mantiene la pantalla encendida mientras la página sigue visible.</p>
+      <div class="controls">
+        <button type="button" id="wake-on" class="btn btn--primary">Activar pantalla activa</button>
+        <button type="button" id="wake-off" class="btn btn--danger" disabled>Liberar</button>
+      </div>
+      <p class="state" id="wake-state" data-state="idle">Prueba sin iniciar</p>
+      <dl class="kv">
+        <dt>Solicitudes concedidas</dt>
+        <dd id="wake-count">0</dd>
+      </dl>
+    </section>
+
+    <section class="card" aria-labelledby="vis-title">
+      <h2 id="vis-title">Retorno desde segundo plano</h2>
+      <p class="hint">
+        Se registran visibilidad, pagehide y pageshow con marcas de tiempo en memoria.
+        Un intervalo grande entre muestras GPS no significa captura continua.
+      </p>
+      <ul class="event-list" id="event-list">
+        <li class="event-list__empty">Sin eventos todavía.</li>
+      </ul>
+    </section>
+
+    <section class="card" aria-labelledby="io-title">
+      <h2 id="io-title">Exportar y reiniciar</h2>
+      <p class="hint">La exportación es local y solo por acción explícita. No incluye coordenadas, user agent completo ni identificadores del scooter.</p>
+      <div class="controls">
+        <button type="button" id="export-btn" class="btn">Exportar JSON sanitizado</button>
+        <button type="button" id="reset-btn" class="btn btn--danger">Reiniciar sesión en memoria</button>
+      </div>
+    </section>
+
+    <footer class="probe__footer">
+      <p>Sin service worker, sin analítica, sin almacenamiento persistente. Al recargar o reiniciar, la sesión se pierde.</p>
+    </footer>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

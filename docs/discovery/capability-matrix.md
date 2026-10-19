@@ -1,6 +1,6 @@
 # Matriz de capacidades — GC-001 / GC-002
 
-Fecha: 2026-10-19. Estado: **sin resultados de prueba**. Todo lo no probado figura como «Desconocido».
+Fecha: 2026-10-19. Estado: **sin resultados de prueba**. Todo lo no probado figura como «Desconocido». La [sonda de capacidades iPhone](iphone-probe-guide.md) es el instrumento previsto para GPS, Bluetooth, pantalla activa y segundo plano.
 
 Leyenda: Verificado · Parcial · No soportado · **Desconocido**. Solo se usa «Desconocido» hasta tener prueba real.
 
@@ -23,6 +23,6 @@ La [matriz de datos de la integración Xiaomi](../xiaomi-integration.md) mantien
 ## Pendientes para completar la matriz
 
 1. Versión exacta de Safari y permisos del iPhone 11 declarado.
-2. Prueba física en el iPhone 11 con la sonda de capacidades (GC-004).
+2. Prueba física en el iPhone 11 con la [sonda de capacidades](iphone-probe-guide.md) (GC-004).
 3. Prueba física de lectura con el scooter detenido (GC-003).
 4. Evidencia anonimizada por capacidad y decisión de arquitectura de F0.

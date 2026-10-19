@@ -1,0 +1,263 @@
+:root {
+  color-scheme: dark;
+  --bg: #0b0e13;
+  --panel: #141a22;
+  --panel-2: #1b232e;
+  --text: #e8eef5;
+  --muted: #9fb0c3;
+  --line: #2a3644;
+  --accent: #3ba7ff;
+  --ok: #2fbf71;
+  --warn: #e6a23c;
+  --err: #e5484d;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 17px;
+  line-height: 1.45;
+  -webkit-text-size-adjust: 100%;
+}
+
+.probe {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 16px 14px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.probe__eyebrow {
+  margin: 0;
+  color: var(--accent);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.probe__header h1 {
+  margin: 4px 0 6px;
+  font-size: 1.7rem;
+  line-height: 1.15;
+}
+
+.probe__subtitle {
+  margin: 0 0 10px;
+  color: var(--muted);
+}
+
+.probe__warning {
+  margin: 0;
+  padding: 10px 12px;
+  border-left: 4px solid var(--warn);
+  background: rgba(230, 162, 60, 0.12);
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
+
+.card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 16px;
+}
+
+.card h2 {
+  margin: 0 0 10px;
+  font-size: 1.2rem;
+}
+
+.hint {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.kv {
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2px;
+}
+
+.kv dt {
+  color: var(--muted);
+  font-size: 0.85rem;
+  margin-top: 8px;
+}
+
+.kv dd {
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+  word-break: break-word;
+}
+
+.api-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.api {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  background: var(--panel-2);
+  border-radius: 10px;
+  padding: 12px 14px;
+  min-height: 56px;
+}
+
+.api__name {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.95rem;
+}
+
+.badge {
+  border-radius: 999px;
+  padding: 5px 12px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.badge[data-state="ok"] {
+  background: rgba(47, 191, 113, 0.16);
+  color: var(--ok);
+}
+
+.badge[data-state="warn"] {
+  background: rgba(230, 162, 60, 0.16);
+  color: var(--warn);
+}
+
+.badge[data-state="err"] {
+  background: rgba(229, 72, 77, 0.16);
+  color: var(--err);
+}
+
+.badge[data-state="idle"] {
+  background: rgba(159, 176, 195, 0.14);
+  color: var(--muted);
+}
+
+.controls {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+
+.btn {
+  flex: 1 1 160px;
+  min-height: 54px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: var(--panel-2);
+  color: var(--text);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn:active {
+  transform: scale(0.99);
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.btn--primary {
+  background: rgba(59, 167, 255, 0.18);
+  border-color: rgba(59, 167, 255, 0.5);
+}
+
+.btn--danger {
+  background: rgba(229, 72, 77, 0.14);
+  border-color: rgba(229, 72, 77, 0.45);
+}
+
+.state {
+  margin: 12px 0 0;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: var(--panel-2);
+  font-weight: 600;
+}
+
+.state[data-state="ok"] {
+  border-left: 4px solid var(--ok);
+}
+
+.state[data-state="warn"] {
+  border-left: 4px solid var(--warn);
+}
+
+.state[data-state="err"] {
+  border-left: 4px solid var(--err);
+}
+
+.state[data-state="idle"] {
+  border-left: 4px solid var(--muted);
+}
+
+.event-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  max-height: 220px;
+  overflow-y: auto;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.82rem;
+}
+
+.event-list li {
+  padding: 6px 4px;
+  border-bottom: 1px solid var(--line);
+}
+
+.event-list__empty {
+  color: var(--muted);
+}
+
+.probe__footer {
+  color: var(--muted);
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+@media (min-width: 480px) {
+  .kv {
+    grid-template-columns: 1fr 1fr;
+    column-gap: 16px;
+  }
+
+  .kv dt {
+    grid-column: 1;
+  }
+
+  .kv dd {
+    grid-column: 2;
+    text-align: right;
+  }
+}
