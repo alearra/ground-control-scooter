@@ -1,6 +1,6 @@
 # Estado actual — Ground Control
 
-Actualización: 2026-10-19, aprobación AI PM de la base Next.js.
+Actualización: 2026-10-19, integración de la base Next.js (squash `77e6735`).
 
 ## Producto y entrega
 
@@ -8,7 +8,7 @@ PR #65 integrado: cockpit con cinco regiones, jerarquía visual y tres conceptos
 
 Sonda publicada por PR #63 (80db320): https://alearra.github.io/ground-control-scooter/. No es todavía el cockpit ni una integración Xiaomi. PR #64 documental de publicación permanece pendiente de conciliación; no usar sus textos anteriores como estado más reciente.
 
-Base provisional del cockpit en PR #67 (rama `feature/nextjs-foundation`): Next.js 16 App Router con las cinco regiones (barra superior, área del vehículo, mapa, barra inferior, panel contextual) y estado inicial vacío y explícito. Sólo lectura de presencia de APIs tras montar; sin GPS, ubicación, Bluetooth ni persistencia. La sonda sigue publicada por Pages, que no cambió.
+Base provisional del cockpit integrada por **squash merge del PR #67** (commit `77e6735`, head verificado `187c90e`): Next.js 16 App Router con las cinco regiones (barra superior, área del vehículo, mapa, barra inferior, panel contextual) y estado inicial vacío y explícito. Sólo lectura de presencia de APIs tras montar; sin GPS, ubicación, Bluetooth ni persistencia. La sonda sigue publicada por Pages, que no cambió.
 
 Tras la revisión del AI PM, el PR #67 aplicó tres correcciones (commit 8c008c2): la barra superior etiqueta presencia de API y funciones inactivas en tono neutro y declara la conectividad como informada por el navegador; el área del vehículo separa avisos de app de «Diagnóstico del scooter: no disponible»; y el panel contextual dejó de superponerse a la barra inferior, reservando espacio real sin altura supuesta. Informe: [revisión 2026-10-19](reviews/2026-10-19-nextjs-foundation.md).
 
@@ -26,10 +26,10 @@ La elección del framework Next.js fue aprobada explícitamente por Alejandro; o
 
 ## Seguimiento
 
-[Project #6](https://github.com/users/alearra/projects/6): 60 tareas del roadmap. Sincronizado con escrituras acotadas, reutilizando items y conservando Phase/Priority/GC ID: GC-001/#1 y GC-002/#2 en **Review** (inventario declarado); GC-003/#3 sigue abierta sin cambio; GC-004/#4 en **Review** por evidencia parcial (ya no Blocked); GC-005/#5 y GC-006/#6 en **In progress**; GC-007/#7 **Done**; GC-010/#8 en **In progress**; GC-020/#13 en **Review**. Todos con Evidence enlazada. La API de Projects permitió escribir sin errores; no se creó otro Project ni se duplicaron items.
+[Project #6](https://github.com/users/alearra/projects/6): 60 tareas del roadmap. Sincronizado con escrituras acotadas, reutilizando items y conservando Phase/Priority/GC ID: GC-001/#1 y GC-002/#2 en **Review** (inventario declarado); GC-003/#3 sigue abierta sin cambio; GC-004/#4 en **Review** por evidencia parcial (ya no Blocked); GC-005/#5 y GC-006/#6 en **In progress**; GC-007/#7 **Done**; GC-010/#8 en **In progress**; GC-020/#13 en **In progress** (base integrada, alcance restante: instalación PWA y dependencias). Todos con Evidence enlazada. La API de Projects permitió escribir sin errores; no se creó otro Project ni se duplicaron items.
 
 GC-001/002/003/004 siguen abiertas. GC-003 sin lectura del scooter; GC-004 con evidencia parcial (GPS visible; continuidad con pantalla bloqueada no validada), no cierre. GC-005/006 no se cierran: elegir frontend no resuelve PWA vs puente nativo ni el proveedor de mapas/costos. Se corrigió el cuerpo obsoleto de #8 (enlazaba rama antigua y afirmaba arquitectura pausada).
 
 ## Próximo paso
 
-AI PM aprobó el alcance provisional del PR #67 tras revisar el head b4b1b4f, reproducir TypeScript/Biome/build y confirmar los estados afectados en el Project público. Correcciones resueltas; prueba interactiva y sonda siguen como evidencia de OpenCode, sin validación Safari física. Se concilió la frase obsoleta de arquitectura pausada en cockpit-experience.md. Próximo paso: integrar #67 mediante squash, sin deploy; conservar #8/#13 y las tareas de factibilidad abiertas, y GC-020 en In progress después del merge por alcance restante. La integración aún no fue ejecutada. Luego planificar el siguiente incremento F1 antes de añadir sensores o servicios.
+PR #67 integrado por squash en `77e6735` tras verificar el head `187c90e` (sólo conciliaciones documentales sobre el head aprobado) y re-ejecutar `npm ci`, typecheck, Biome, build y la sonda (15/15). Sin deploy: Pages sigue sirviendo sólo la sonda. #8 y #13 permanecen **abiertas** por alcance pendiente; GC-020 pasó a **In progress**. La prueba interactiva y la sonda siguen como evidencia de OpenCode, sin validación Safari física. Siguiente paso: planificar el siguiente incremento F1 (compactar contenido provisional y validar jerarquía vertical) antes de añadir sensores o servicios; no iniciar otra fase automáticamente.
