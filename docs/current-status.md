@@ -16,9 +16,9 @@ iPhone 11, iOS 27.0.1 declarado, Safari, soporte vertical disponible. Xiaomi Hom
 
 ## Arquitectura seleccionada para iniciar
 
-[Arquitectura](architecture.md), [ADR-0001](adr/0001-local-first-web-cockpit.md) y [RULES](../RULES.md): React + Vite + TypeScript; Tailwind; diseño local-first y adaptadores GPS/manual/Xiaomi futuro. IndexedDB/Dexie y MapLibre por etapas. Backend y Capacitor no instalados ni comprometidos todavía.
+[Arquitectura](architecture.md), [ADR-0002](adr/0002-nextjs-platform.md) y [RULES](../RULES.md): **Next.js 16.x App Router + React + TypeScript**, por decisión explícita de Alejandro: uniformidad con ALESAM y evolución cercana a plataforma con backend. Tailwind; datos locales y adaptadores GPS/manual/Xiaomi futuro. IndexedDB/Dexie y MapLibre por etapas. Backend Next.js preparado por diseño, sin endpoints implementados todavía. Capacitor no seleccionado/instalado.
 
-Esta es una selección técnica del AI PM dentro de la autorización de avanzar; no implica que cada dependencia haya sido aprobada individualmente por Alejandro. No hay scaffold de app, proveedor de rutas, origen definitivo para datos personales ni conexión Xiaomi validada.
+La elección del framework Next.js fue aprobada explícitamente por Alejandro; otros servicios se incorporan según necesidad. Vite queda descartado como base del producto. No hay scaffold de app, proveedor de rutas, origen definitivo para datos personales ni conexión Xiaomi validada.
 
 ## Seguimiento
 

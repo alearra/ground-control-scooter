@@ -1,6 +1,6 @@
 # ADR-0001 — Cockpit web local-first con adaptadores
 
-Fecha: 2026-10-19. Estado: seleccionado por el AI PM para iniciar implementación, pendiente de revisión del PR técnico y validación continua; no implica aprobación explícita de cada dependencia por Alejandro.
+Fecha: 2026-10-19. Estado: **superado por ADR-0002** el 2026-10-19. Se conserva como historial de la propuesta React/Vite; no implementarla. El enfoque de datos locales y adaptadores permanece vigente, el framework elegido es Next.js.
 
 ## Contexto
 
@@ -26,3 +26,8 @@ Menos servicios iniciales; privacidad y funcionamiento local. Backend/sync no in
 ## Excepciones al stack habitual
 
 Vite sustituye Next.js para esta interfaz. No Supabase/Fastify/Redis/IA/TanStack Query por defecto. Mantener TypeScript, features, Tailwind, Biome y pruebas por riesgo. Dependencias por necesidad y versiones compatibles fijadas en lockfile. Detalles: [architecture.md](../architecture.md).
+
+
+## Sustitución
+
+Alejandro eligió explícitamente Next.js para priorizar uniformidad con ALESAM y evolución cercana a plataforma con backend. [ADR-0002](0002-nextjs-platform.md) es la decisión vigente. La comparación previa y el stack Vite de este ADR son históricos.
