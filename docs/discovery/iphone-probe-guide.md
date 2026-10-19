@@ -3,38 +3,43 @@
 Fecha: 2026-10-19. Estado: **preparada, sin ejecutar**. Esta sonda es la que aporta
 evidencia a GC-004 (y solo disponibilidad web a GC-003). No cierra ninguna issue por sí sola.
 
-Carpeta: [`experiments/iphone-capability-probe/`](../../experiments/iphone-capability-probe/).
+Carpeta publicada: [`experiments/iphone-capability-probe/`](../../experiments/iphone-capability-probe/),
+que es la **raíz del artefacto** desplegado.
 
 ## 1. Publicar por HTTPS
 
 La sonda necesita un **contexto seguro (HTTPS)**. Abrirla con `http://` sobre una IP
 local no sirve: el navegador no expone Geolocation ni Wake Lock en contexto inseguro.
-No se debe desactivar la seguridad del navegador para probar.
+No se desactiva la seguridad del navegador para probar.
 
-Opción recomendada (sin servicios pagos): publicar **solo esta carpeta** con GitHub Pages.
+La publicación se acota a esta carpeta con [`.github/workflows/pages.yml`](../../.github/workflows/pages.yml):
 
-1. Integrar primero el PR de la sonda en `main` (revisión del AI PM).
-2. En GitHub → *Settings* → *Pages*, elegir la rama `main` y, si la interfaz lo permite,
-   la carpeta `/experiments/iphone-capability-probe` como raíz de publicación.
-3. Si Pages no admite una subcarpeta como raíz, publicar desde la raíz del repositorio y
-   abrir la URL completa de la carpeta.
-4. Abrir en el iPhone 11 la URL `https://<usuario>.github.io/<repo>/experiments/iphone-capability-probe/`.
-5. Anotar la URL usada y la fecha en la evidencia.
+1. Integrar el PR de la sonda en `main` (revisión del AI PM) y habilitar Pages con
+   *Source: GitHub Actions* en Settings → Pages.
+2. El workflow empaqueta **solo** `experiments/iphone-capability-probe` con
+   `actions/upload-pages-artifact` y despliega con `actions/deploy-pages`. No publica la
+   raíz del repositorio, `docs` ni archivos de pruebas.
+3. El workflow corre **solo** con push a `main` o ejecución manual sobre `main`; nunca
+   despliega código de un PR.
+4. La URL real es la salida `page_url` del paso de despliegue. **No se inventa** ni se
+   asume una ruta `/experiments`: como esa carpeta es la raíz del artefacto, la URL es la
+   del sitio publicado, sin subruta.
+5. Anotar la URL observada y la fecha en la evidencia.
 
-> Pages es una decisión de infraestructura; habilitarlo requiere revisión del AI PM.
-> Alternativa sin publicar: servidor HTTPS local con certificado de desarrollo, solo si
-> Alejandro lo pide expresamente.
+> Pages es una decisión de infraestructura y todavía **no se ha activado ni desplegado**.
+> Hasta ejecutar el deploy, la URL es un valor pendiente, no un dato confirmado.
 
 ## 2. Protocolo de prueba
 
-Ejecutar en el orden indicado, con el scooter **detenido** y sin manipularlo durante la prueba.
+Prueba condiciones **por separado**, en este orden, con el scooter **detenido**. Cada caso
+guía es de ~30 s; el caso de primer plano, de ~60 s. Son instrucciones, no resultados ya obtenidos.
 
-1. **Contexto**: confirmar que «Contexto seguro (HTTPS)» muestra *Sí*. Si no, no seguir: la prueba no es válida.
+1. **Contexto**: confirmar «Contexto seguro (HTTPS)» = *Sí*. Si no, detener: la prueba no es válida.
 2. **Detección de APIs**: anotar el estado de las tres APIs (presente/ausente).
-3. **GPS**: pulsar *Iniciar GPS*, conceder el permiso y dejar correr 30–60 s. Observar muestras, precisión y antigüedad.
-4. **Pantalla activa**: pulsar *Activar pantalla activa* y comprobar que la pantalla no se apaga sola.
-5. **Segundo plano**: cambiar de app o bloquear la pantalla ~30 s y volver. Observar la lista de eventos y la antigüedad de la última muestra GPS.
-6. **Exportar**: pulsar *Exportar JSON sanitizado* y compartir ese archivo, no capturas con datos personales.
+3. **Primer plano (60 s)**: *Iniciar GPS*, conceder permiso y dejar correr sin salir de la app. Observar muestras, precisión y antigüedad.
+4. **Cambio a otra app (30 s)**: con GPS activo, cambiar de app ~30 s y volver. Anotar los eventos de visibilidad y si llegaron muestras al volver.
+5. **Bloqueo de pantalla (30 s)**: activar la pantalla activa, bloquear el teléfono ~30 s y desbloquear. Anotar el estado del Wake Lock y los eventos.
+6. **Exportar**: *Exportar JSON sanitizado* y compartir ese archivo, no capturas con datos personales.
 
 ## 3. Cómo leer los resultados
 
@@ -42,8 +47,11 @@ Ejecutar en el orden indicado, con el scooter **detenido** y sin manipularlo dur
 - **API ausente** es un resultado válido y suficiente; no se instalan polyfills ni extensiones.
 - La **pista de navegador** no confirma la versión exacta de Safari/iOS. La versión declarada
   (iOS 27.0.1) se mantiene como *declarada, sin verificar*.
-- Un **intervalo grande** entre muestras GPS después de volver de segundo plano no implica
-  captura continua: solo indica que la página estuvo pausada.
+- El export separa **captura** (`position.timestamp`) de **recepción** (`Date.now`) y agrega
+  intervalos. Un **hueco** en la entrega de muestras, por sí solo, **no** demuestra que la
+  página estuviera suspendida ni que dejara de capturarse: solo muestra un intervalo de entregas
+  observadas. La evidencia permite describir entregas e intervalos; **no** promete captura en
+  segundo plano.
 - **Velocidad** puede ser nula o no informada; se registra como «No disponible», nunca como cero.
 - **Wake Lock** mantiene la pantalla encendida mientras la página está visible; **no** garantiza
   ejecución con la pantalla bloqueada.
@@ -51,16 +59,29 @@ Ejecutar en el orden indicado, con el scooter **detenido** y sin manipularlo dur
 ## 4. Evidencia y sanitización
 
 El JSON exportado contiene solo: presencia de APIs, códigos de error, contadores, precisión
-agregada y tiempos. **No** incluye coordenadas, rutas, user agent completo ni identificadores
-del scooter. Antes de adjuntar cualquier captura, recortar la barra de estado y cualquier dato personal.
+agregada, tiempos de captura/recepción (primer/último, intervalos agregados), visibilidad
+asociada al registro acotado de muestras y eventos. **No** incluye coordenadas, rutas, altitud,
+user agent completo ni identificadores del scooter. Antes de adjuntar capturas, recortar la barra
+de estado y cualquier dato personal.
 
-## 5. Criterios para cerrar GC-004
+## 5. Verificación en local (simulación)
 
-- [ ] URL HTTPS usada y fecha registradas.
+El harness con `node:vm` valida estados, concurrencia y exportación con APIs falsas:
+
+```sh
+node --check experiments/iphone-capability-probe/app.js
+node --test experiments/iphone-capability-probe-tests/probe.test.mjs
+```
+
+Es **simulación**, no prueba de Safari ni del iPhone. La prueba física sigue pendiente.
+
+## 6. Criterios para cerrar GC-004
+
+- [ ] URL HTTPS observada (salida del deploy) y fecha registradas.
 - [ ] Resultado observado por API (Geolocation, Bluetooth, Wake Lock).
-- [ ] Resultado de GPS en primer plano (muestras y precisión).
-- [ ] Resultado de pantalla activa (concedido / denegado / liberado).
-- [ ] Resultado del retorno desde segundo plano (eventos y si el reloj de GPS se detuvo).
+- [ ] Resultado del caso de primer plano (muestras y precisión).
+- [ ] Resultado del cambio a otra app (eventos y si llegaron muestras al volver).
+- [ ] Resultado del bloqueo de pantalla (estado del Wake Lock y eventos).
 - [ ] JSON sanitizado adjunto en la issue.
 - [ ] Revisión del AI PM antes de marcar Done.
 

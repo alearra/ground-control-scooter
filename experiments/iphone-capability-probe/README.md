@@ -12,6 +12,10 @@ producción, y no forma parte del stack final.
 - Pantalla activa: solicitud y liberación de Wake Lock.
 - Retorno desde segundo plano: eventos `visibilitychange`, `pagehide` y `pageshow` con marcas de tiempo.
 
+La exportación separa **tiempo de captura** (`position.timestamp`) de **tiempo de recepción** (`Date.now`)
+y conserva intervalos agregados, para observar entregas sin confundir el intervalo de callbacks con el
+de captura. El registro de muestras está acotado y cuenta las descartadas.
+
 ## Qué **no** hace
 
 - No lee el scooter, no empareja Bluetooth y no pide claves.
@@ -30,16 +34,21 @@ stack final.
 
 ## Cómo verificar en local
 
+Sintaxis y ausencia de red desde el cliente:
+
 ```sh
 node --check experiments/iphone-capability-probe/app.js
-```
-
-Revisar que no haya `fetch`, `XMLHttpRequest`, `WebSocket`, `localStorage` ni
-URLs externas:
-
-```sh
-grep -nE "fetch\\(|XMLHttpRequest|WebSocket|localStorage|https?://" \
+grep -nE "fetch\(|XMLHttpRequest|WebSocket|EventSource|https?://" \
   experiments/iphone-capability-probe/*.js experiments/iphone-capability-probe/*.html
 ```
 
+Harness de simulación (DOM y APIs falsos con `node:vm`, sin dependencias). **No** es una
+prueba de Safari ni del iPhone; solo valida lógica de estados, concurrencia y exportación:
+
+```sh
+node --test experiments/iphone-capability-probe-tests/probe.test.mjs
+```
+
 Guía de apertura y protocolo de prueba: [`docs/discovery/iphone-probe-guide.md`](../../docs/discovery/iphone-probe-guide.md).
+Publicación por GitHub Pages: [`.github/workflows/pages.yml`](../../.github/workflows/pages.yml), que empaqueta
+únicamente esta carpeta como raíz del artefacto.

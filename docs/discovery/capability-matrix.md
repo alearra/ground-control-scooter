@@ -1,6 +1,6 @@
 # Matriz de capacidades — GC-001 / GC-002
 
-Fecha: 2026-10-19. Estado: **sin resultados de prueba**. Todo lo no probado figura como «Desconocido». La [sonda de capacidades iPhone](iphone-probe-guide.md) es el instrumento previsto para GPS, Bluetooth, pantalla activa y segundo plano.
+Fecha: 2026-10-19. Estado: **sin resultados de prueba**. Todo lo no probado figura como «Desconocido». La [sonda de capacidades iPhone](iphone-probe-guide.md) es el instrumento previsto para GPS, Bluetooth, pantalla activa y segundo plano. La sonda separa tiempos de **captura** y de **recepción**: un hueco en las entregas no demuestra por sí solo suspensión de la página ni captura continua.
 
 Leyenda: Verificado · Parcial · No soportado · **Desconocido**. Solo se usa «Desconocido» hasta tener prueba real.
 
