@@ -25,6 +25,14 @@ Usuario inicial: Alejandro, en sus trayectos cotidianos, negocios, reuniones y e
 
 Diseño propuesto: fondo oscuro, tipografía limpia, alto contraste, transiciones breves y pocos indicadores. Soportar uso bajo sol; modo claro a evaluar. El vehículo ocupa el centro en reposo y el mapa gana espacio en marcha. No depender de un render 3D pesado para operar. Idioma español por defecto, con nombres de estados opcionales en inglés.
 
+## Organización e información del cockpit
+
+Requisitos de Alejandro del 2026-10-19: orden visual, coherencia entre funciones y evolución por software. Cinco regiones compartidas: área del vehículo, mapa, barra inferior, barra superior y paneles superpuestos. Adaptación al iPhone vertical; detalle canónico en [cockpit-experience.md](cockpit-experience.md).
+
+La conducción mostrará velocidad actual, límite de vía si existe fuente válida, energía restante, potencia/regeneración si hay telemetría validada, testigos/avisos y estados reales de asistencias. Se incorpora percepción con cámara como función futura condicionada, sin calendario ni requisito de MVP.
+
+Energía distingue explícitamente **porcentaje de batería**, **autonomía indicada** y **predicción del viaje**. No son intercambiables. La barra inferior agrupa accesos propios del scooter; climatización es referencia de la experiencia de auto y no un control del scooter sin hardware aplicable.
+
 ## Recorrido completo
 
 1. **Hangar / reposo:** Rover 01, estado de conexión, batería con fecha y fuente, mantenimiento y destinos frecuentes. Casa puede definirse como «Base» sin publicar su ubicación.
@@ -68,7 +76,7 @@ Cada dato necesita fuente, timestamp y estado: actual, desactualizado, estimado 
 
 ## Conducción y límites del producto
 
-Controles grandes, tareas de configuración antes de partir y restricciones de interacción en marcha. Voz opcional a validar en el teléfono. Sin animaciones distractoras ni gamificación que premie velocidad. Sin detección ficticia de autos/peatones, conducción autónoma ni relación con Autopilot/FSD.
+Controles grandes, tareas de configuración antes de partir y restricciones de interacción en marcha. Voz opcional a validar en el teléfono. Sin animaciones distractoras ni gamificación que premie velocidad. Percepción con cámara futura solicitada, sujeta a validación; sin detección ficticia de autos/peatones, conducción autónoma ni relación con Autopilot/FSD.
 
 La webapp debe degradarse con claridad ante GPS, BLE o red ausentes. Mapas offline completos, ubicación con pantalla bloqueada y BLE en segundo plano requieren evaluación específica; instalar una PWA no los garantiza.
 
