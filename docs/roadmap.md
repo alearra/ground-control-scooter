@@ -10,6 +10,10 @@ Responsable de decisiones y pruebas de campo: Alejandro. La ejecución técnica 
 
 Ruta crítica: F0 → F1 → F2 → F3 → F4 → F6 → F9. F5 requiere la integración validada de F0/F3. F7/F8 pueden avanzar con datos de prueba identificados, pero su aceptación requiere datos reales.
 
+## Actualización de producto — cockpit (2026-10-19)
+
+[Especificación de experiencia](cockpit-experience.md): cinco regiones, orden visual/coherencia/evolución y batería/autonomía/predicción separadas. Se amplía el alcance de tareas existentes sin renumerarlas. Cámara/percepción es expansión futura solicitada, sin fase/fecha comprometida. Decisión de arquitectura en pausa hasta completar revisión de producto.
+
 ## F0 · 0–10 — Factibilidad y contrato de alcance
 
 - [ ] GC-001: identificar teléfono/OS/browser principal y orientación del soporte de manubrio.
@@ -28,9 +32,9 @@ Ruta crítica: F0 → F1 → F2 → F3 → F4 → F6 → F9. F5 requiere la inte
 
 Depende de F0 para representar capacidades reales.
 
-- [ ] GC-010: wireframes de Hangar, misión, preflight, cockpit, estacionamiento y debrief.
+- [ ] GC-010: wireframes de Hangar, misión, preflight, cockpit, estacionamiento y debrief; cinco regiones del cockpit vertical y paneles contextuales.
 - [ ] GC-011: sistema visual propio inspirado en Tesla/SpaceX/aviación; confirmar nombre y alias.
-- [ ] GC-012: estados vacíos, desconectado, dato antiguo, error, permisos denegados y GPS impreciso.
+- [ ] GC-012: estados vacíos, desconectado, dato antiguo, error, permisos denegados y GPS impreciso; testigos y asistencias reales con prioridad de avisos.
 - [ ] GC-013: prototipo interactivo con fixture claramente marcado como demo.
 - [ ] GC-014: legibilidad al sol, controles táctiles, voz opcional y comportamiento en movimiento.
 
@@ -41,7 +45,7 @@ Depende de F0 para representar capacidades reales.
 
 - [ ] GC-020: estructura del frontend y componentes del cockpit; instalación PWA cuando aplique.
 - [ ] GC-021: almacenamiento local persistente y migraciones; perfil de vehículo, preferencias y destinos.
-- [ ] GC-022: contrato común de muestras, fuentes, timestamps, unidades y calidad.
+- [ ] GC-022: contrato común de muestras, fuentes, timestamps, unidades y calidad; separar batería, autonomía, predicción y potencia instantánea.
 - [ ] GC-023: sesión de viaje recuperable, cola de sincronización y exportación/backup inicial.
 - [ ] GC-024: HTTPS, permisos bajo demanda y separación de secretos; login privado si hay backend.
 - [ ] GC-025: caché de interfaz y estados offline explícitos.
@@ -65,7 +69,7 @@ Depende de F0 para representar capacidades reales.
 ## F4 · 45–60 — Navegación y misiones
 
 - [ ] GC-040: destinos frecuentes, rutas, paradas y regreso a base.
-- [ ] GC-041: distancia/tiempo planificados y selección de perfil de ruta apropiado según proveedor.
+- [ ] GC-041: distancia/tiempo planificados y selección de perfil de ruta apropiado según proveedor; límite de vía sólo con fuente válida, separado de umbral personal y máximo del scooter.
 - [ ] GC-042: próxima maniobra, mapa orientado y voz si funciona de forma confiable.
 - [ ] GC-043: desvío/replanificación, pérdida de red y distinción entre trazado y ruta guiada.
 - [ ] GC-044: estacionamiento guardado desde el teléfono.
@@ -78,10 +82,10 @@ Depende de F0 para representar capacidades reales.
 
 Depende de F0/F3 y de muestras reales suficientes.
 
-- [ ] GC-050: consolidar matriz Xiaomi; batería, odómetro y campos adicionales verificados.
+- [ ] GC-050: consolidar matriz Xiaomi; batería, odómetro y campos adicionales verificados; investigar potencia/regeneración con voltaje/corriente o campo directo, unidades y signo.
 - [ ] GC-051: historial de cargas y tramos de consumo; distinguir energía observada de calculada.
 - [ ] GC-052: modelo inicial de consumo por trayecto con incertidumbre y mínimo de muestras.
-- [ ] GC-053: reserva configurable y estimación ida/vuelta; alerta de margen bajo.
+- [ ] GC-053: reserva configurable y estimación ida/vuelta; alerta de margen bajo; UI distingue porcentaje de batería, autonomía indicada y predicción del viaje.
 - [ ] GC-054: contraste de predicción contra consumo al finalizar y registro del error.
 - [ ] GC-055: degradación con batería antigua, ausencia BLE o datos atípicos.
 
@@ -137,7 +141,9 @@ Depende de F0/F3 y de muestras reales suficientes.
 
 ## Después de 100 — Opciones sin compromiso
 
-Otros scooters/vehículos, dron/sensores, varias cuentas, comunidad, integraciones adicionales y comercialización. Controles del vehículo sólo tras evaluación específica. Antes de monetizar: resolver licencias, soporte, costos, privacidad y modelo de negocio. Ninguna opción implica pertenencia empresarial o aprobación de desarrollo.
+Cámara y percepción de vehículos/elementos: dirección futura solicitada por Alejandro, sin fase/fecha comprometida; evaluar hardware, permisos, procesamiento, latencia, precisión y recursos antes de implementar, según [especificación](cockpit-experience.md). No mostrar detecciones ficticias ni implica conducción autónoma.
+
+Otras opciones: otros scooters/vehículos, dron/sensores, varias cuentas, comunidad, integraciones adicionales y comercialización. Controles del vehículo sólo tras evaluación específica. Antes de monetizar: resolver licencias, soporte, costos, privacidad y modelo de negocio. Ninguna opción implica pertenencia empresarial o aprobación de desarrollo.
 
 ## Métricas de seguimiento propuestas
 

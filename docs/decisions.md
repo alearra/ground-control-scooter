@@ -16,3 +16,16 @@ Fecha: 2026-10-19.
 Pendientes: nombre/alias definitivos, stack efectivo, teléfono de uso, método de integración, mapas, licencia, presupuesto y fechas. No se presume empresa titular ni comercialización. La mención «0 a 10» se interpreta como las diez fases del roadmap completo ya solicitado; no se recorta el alcance a F0.
 
 Referencias: [workflow](development-workflow.md), [roadmap](roadmap.md) e [investigación Xiaomi](xiaomi-integration.md).
+
+## Revisión de producto — 2026-10-19
+
+| ID | Decisión | Estado |
+|---|---|---|
+| D-009 | Orden visual, coherencia de interacción y evolución por software como resultados del cockpit | Requisito de Alejandro |
+| D-010 | Cinco regiones: vehículo, mapa, barra inferior, barra superior y paneles superpuestos | Requisito; distribución vertical a validar en F1 |
+| D-011 | Velocidad, límite de vía, energía, potencia/regeneración, avisos y asistencias con fuente/estado verificables | Requisito condicionado por datos disponibles |
+| D-012 | Separar batería %, autonomía indicada y predicción energética del viaje | Requisito de Alejandro |
+| D-013 | Cámara y percepción de vehículos/elementos a futuro | Dirección futura solicitada; alcance técnico y fase por definir |
+| D-014 | Pausar arquitectura mientras se revisa el producto | Instrucción actual de Alejandro |
+
+[Detalle canónico del cockpit](cockpit-experience.md). Se amplían GC-010/012/022/041/050/053 sin cerrar tareas ni prometer integración disponible. Teléfono, orientación y datos básicos del scooter ya fueron aportados; capacidades técnicas siguen limitadas a evidencia de la sonda. Climatización es referencia automotriz; no se implementa un control inexistente del scooter.
