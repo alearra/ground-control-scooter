@@ -1,0 +1,19 @@
+# Revisión AI PM — sonda iPhone / PR #63
+
+Fecha: 2026-10-19. Head revisado: 2510113cb1605b81b3a773cb3212d0bd6eb2d829.
+Estado: requiere correcciones antes de integrar/publicar. Revisión estática de diff y app.js completo; no se ejecutaron pruebas físicas ni se afirma validación de runtime.
+
+## Hallazgos
+
+1. **GPS: estado incorrecto.** onGeoError(code=1) establece denied, pero llama stopGps(false), que lo reemplaza por stopped y oculta «Permiso denegado». onPosition tampoco restablece running después de un error recuperable: UI y exportación pueden discrepar.
+2. **Wake Lock: callbacks obsoletos.** requestWakeLock y onVisibilityChange duplican adquisición sin guardia pending ni identidad de sesión. Reiniciar/liberar mientras una promesa está pendiente permite que la resolución posterior reactive pantalla o modifique contadores de la sesión nueva. Los handlers release tampoco comprueban que el sentinel siga siendo el actual y no registran liberaciones del sistema de forma consistente.
+3. **Evidencia temporal insuficiente.** buildExport sólo incluye first_to_last_ms para GPS y timestamps de visibilidad. No conserva timestamps/intervalos de cada muestra o resúmenes equivalentes; no se puede reconstruir si continuó la entrega en segundo plano ni separar captura timestamp de recepción callback. La guía no debe concluir «la página estuvo pausada» de un hueco GPS aislado.
+4. **Publicación fuera de alcance.** La guía ofrece raíz del repo como fallback. El requisito es publicar sólo experiments/iphone-capability-probe. Preparar Actions con upload-pages-artifact apuntando exclusivamente a esa carpeta; no publicar raíz ni docs. La selección de carpeta arbitraria no es una opción de publicación de rama estándar.
+
+## Corrección y validación solicitadas
+
+Conservar estado denied al limpiar recursos; recuperar running al recibir muestras válidas. Usar una adquisición Wake Lock compartida, guardia pending y generación/token de sesión; descartar y liberar resultados obsoletos. Registrar tiempos de captura y recepción o intervalos agregados, limitados y sin coordenadas; no equiparar wake lock con ejecución en background.
+
+Verificar las regresiones con mocks acotados o harness Node sin dependencias: denegación GPS; recuperación tras timeout; reset mientras adquisición pendiente; liberar antes de resolver; adquirir tras retorno y liberar por sistema; exportar muestras con pausas conocidas. La prueba iPhone sigue pendiente.
+
+Actualizar documentación, mantener GC-003/004 abiertas y devolver PR #63 corregido. Instrucciones: prompts/003-probe-review-fixes.md en main.
