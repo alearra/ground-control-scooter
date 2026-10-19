@@ -1,0 +1,52 @@
+name: Publicar sonda de capacidades (Pages)
+
+# Solo se publica experiments/iphone-capability-probe como raíz del artefacto.
+# No se despliega código de PR: únicamente push a main o ejecución manual sobre main.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "experiments/iphone-capability-probe/**"
+      - ".github/workflows/pages.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: "pages-iphone-probe"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Configurar Pages
+        uses: actions/configure-pages@v6
+
+      - name: Empaquetar solo la carpeta de la sonda
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: experiments/iphone-capability-probe
+
+  deploy:
+    needs: build
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Desplegar en GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
