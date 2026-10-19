@@ -28,7 +28,7 @@ Este inventario alimenta la [matriz de capacidades](capability-matrix.md) y la [
 | Dato | Valor actual | Fuente / cómo se obtiene |
 |---|---|---|
 | Orientación de uso prevista (retrato / paisaje) | Retrato / vertical | Decisión de Alejandro, 2026-10-19 |
-| Tipo de soporte de manubrio | Pendiente | Foto sanitizada o descripción |
+| Tipo de soporte de manubrio | Soporte disponible, para uso vertical; mecanismo de fijación no especificado | Confirmación de Alejandro, 2026-10-19 |
 | Altura y ángulo respecto de la vista | Pendiente | Medición o descripción |
 | Visibilidad con luz solar directa | Desconocido | Prueba física |
 | Uso con guantes / controles táctiles | Desconocido | Prueba física |
@@ -47,6 +47,6 @@ Este inventario alimenta la [matriz de capacidades](capability-matrix.md) y la [
 
 ## 4. Estado de las tareas
 
-- GC-001 (#1): **abierta**, inventario parcial recibido: iPhone 11, iOS declarado 27.0.1, Safari y orientación vertical. Pendientes versión exacta del navegador y tipo de soporte. Pruebas de capacidades se gestionan en GC-003/004; no son requisito para registrar un dato declarado.
+- GC-001 (#1): **abierta**, inventario parcial recibido: iPhone 11, iOS declarado 27.0.1, Safari y orientación vertical. Soporte disponible y orientación vertical confirmados. Pendiente versión exacta del navegador; mecanismo de fijación opcional para ensayo de ergonomía. Pruebas de capacidades se gestionan en GC-003/004; no son requisito para registrar un dato declarado.
 - GC-002 (#2): **abierta**, región Argentina, Xiaomi Home V11.8.204, modelo comercial y código informados. Firmware informado: 2.7.1_0112.0066. Inventario mínimo del scooter recibido; pendiente de revisión/cierre con evidencia documental. El código de modelo no se interpreta como firmware.
 - No cerrar ninguna hasta validar datos reales y obtener evidencia revisable.
