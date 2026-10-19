@@ -79,3 +79,11 @@ Capturas sintéticas (sin datos personales, recortadas a 390 px de ancho):
 ## Siguiente paso
 
 Revisión del AI PM sobre este incremento. Pendientes de F1 (no incluidos): flujos de Hangar/misiones/debrief, wireframes parado/en marcha, iconos definitivos y validación en Safari físico.
+
+## Revisión AI PM — head 185d18c
+
+**Dictamen: cambios requeridos antes de merge.** La compactación y el traslado de diagnósticos técnicos respetan el alcance. Revisión de código detecta que `VehicleArea` sigue dentro del `main` con `overflow-y-auto` en cockpit.tsx; contradice el punto 1 de este informe y el comentario del componente. Al desbordar esa región, los instrumentos pueden desplazarse junto con ella. Las comprobaciones iniciales de visibilidad no acreditan persistencia durante scroll. No se afirma que el AI PM haya reproducido la interacción: es un hallazgo de composición del código.
+
+La evidencia de ancho se acepta como documento constreñido a 390 CSS px, no viewport real de ese ancho. El informe ya declara esta limitación, pero su encabezado «Viewports» y las afirmaciones de dimensiones deben ser coherentes con ella; registrar innerWidth/clientWidth/ancho de documento y altura efectiva.
+
+Corrección acotada en [prompt 008](../../prompts/008-cockpit-persistence-review.md): instrumentos fuera de la región desplazable, regresión de scroll/foco y evidencia dimensionada con precisión. No requiere nueva prueba física del usuario. Sin merge/deploy; GC-010 permanece Review y abierta. El AI PM no repitió los 102 checks ni la sonda en esta revisión.
