@@ -8,7 +8,7 @@ PR #65 integrado: cockpit con cinco regiones, jerarquía visual y tres conceptos
 
 Sonda publicada por PR #63 (80db320): https://alearra.github.io/ground-control-scooter/. No es todavía el cockpit ni una integración Xiaomi. PR #64 documental de publicación permanece pendiente de conciliación; no usar sus textos anteriores como estado más reciente.
 
-Base provisional del cockpit en la rama `feature/nextjs-foundation`: Next.js 16 App Router con las cinco regiones (barra superior, área del vehículo, mapa, barra inferior, panel contextual) y estado inicial vacío y explícito. Sólo lectura de presencia de APIs tras montar; sin GPS, ubicación, Bluetooth ni persistencia. La sonda sigue publicada por Pages, que no cambió.
+Base provisional del cockpit en PR #67 (rama `feature/nextjs-foundation`): Next.js 16 App Router con las cinco regiones (barra superior, área del vehículo, mapa, barra inferior, panel contextual) y estado inicial vacío y explícito. Sólo lectura de presencia de APIs tras montar; sin GPS, ubicación, Bluetooth ni persistencia. La sonda sigue publicada por Pages, que no cambió.
 
 ## Evidencia física disponible
 
