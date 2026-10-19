@@ -152,4 +152,4 @@ Revisar prioridades después del MVP y del piloto. El roadmap no es una estimaci
 
 ## Seguimiento operativo
 
-Cada GC-ID corresponde a una issue: [backlog](backlog.md). Estado real en GitHub Issues y en el Project cuando se cree. Porcentajes son intervalos del plan, no avance medido. Repo público build in public; datos de viajes privados. [Workflow](development-workflow.md).
+Cada GC-ID corresponde a una issue: [backlog](backlog.md). Estado real en GitHub Issues y en el [Project](https://github.com/users/alearra/projects/6). Porcentajes son intervalos del plan, no avance medido. Repo público build in public; datos de viajes privados. [Workflow](development-workflow.md).

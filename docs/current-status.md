@@ -12,12 +12,10 @@ Sin app implementada, scaffold, stack final o conexión Xiaomi verificada. F0 es
 
 ## Seguimiento
 
-[Backlog](backlog.md) e [Issues](https://github.com/alearra/ground-control-scooter/issues). GitHub Project pendiente de creación por falta de operaciones Projects en el conector. [Especificación](project-setup.md).
+[Backlog](backlog.md) e [Issues](https://github.com/alearra/ground-control-scooter/issues). [GitHub Project](https://github.com/users/alearra/projects/6) creado y verificado: 60 items (#1–#60), #7 en Done y 59 en Backlog, con Phase, Priority y GC ID cargados; Evidence en #7. [Detalle](project-setup.md). Vistas Board/Roadmap/Current phase pendientes de UI. Prioridad inicial por fase validada por el AI PM; revisar al cerrar F0.
 
 GC-007 (#7): Done: repositorio e instrucciones preparados, decisiones registradas y documentación verificada en el commit 0eb9aeb; issue cerrada tras revisión documental. No equivale a cerrar F0. GC-001/002: candidatas para la próxima sesión; requieren datos reales del teléfono y scooter.
 
 ## Próxima acción
 
-Primero ejecutar [prompts/001-github-project-setup.md](../prompts/001-github-project-setup.md) en OpenCode con Big Pickle para crear/verificar el Project. El navegador del AI PM no tiene sesión iniciada y Alejandro autorizó la alternativa local. El tablero continúa pendiente de evidencia; las 60 issues ya existen.
-
-Después de revisar ese resultado, usar [prompts/000-discovery.md](../prompts/000-discovery.md) para inventario. No ejecutar el roadmap completo ni elegir stack antes de F0.
+Revisión AI PM realizada: [resultado y límites](reviews/2026-10-19-project-setup.md). Integrar el PR documental #61 tras verificar su estado final. Las vistas siguen pendientes de UI y no bloquean el inventario. Después usar [prompts/000-discovery.md](../prompts/000-discovery.md) para el inventario. No ejecutar el roadmap completo ni elegir stack antes de F0.

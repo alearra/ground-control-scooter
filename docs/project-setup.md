@@ -1,26 +1,40 @@
-# GitHub Project — configuración preparada
+# GitHub Project — estado configurado
 
-Fecha: 2026-10-19. Estado: **pendiente de creación**. La conexión GitHub actual permite Issues y contenidos, pero no expone operaciones GitHub Projects. No hay URL o ID de Project confirmado.
+Fecha: 2026-10-19. Estado: **creado y verificado**. Ejecutado con OpenCode + Big Pickle (gh 2.102.0, cuenta alearra con scope `project`).
 
-## Especificación
+## Datos reales
 
-- Propietario: alearra. Tipo: GitHub Projects moderno del usuario, enlazado a alearra/ground-control-scooter.
-- Título: Ground Control — Roadmap 0–100. Visibilidad: pública, coherente con build in public.
-- Incluir todas las issues GC del backlog; deduplicar por URL. No generar nuevas issues para importar.
-- Status: Backlog, Ready, In progress, Review, Blocked, Done. Valor inicial: Backlog.
-- Campos propuestos: Phase (F0–F9), Priority (P0/P1/P2), GC ID y Evidence (texto/enlace).
+- URL: https://github.com/users/alearra/projects/6
+- Número: 6. Tipo: GitHub Projects moderno del usuario, visibilidad pública.
+- ID: `PVT_kwHOBc9u684BnyKE`.
+- Enlazado al repositorio alearra/ground-control-scooter (1 repositorio vinculado).
+- Título: Ground Control — Roadmap 0–100.
 
-## Vistas propuestas
+## Campos configurados
 
-Board por Status; tabla Roadmap agrupada por Phase; vista Current phase filtrada F0. Mantener todas las tareas accesibles, pero ejecutar una por vez.
+- Status (selección): Backlog, Ready, In progress, Review, Blocked, Done.
+- Phase (selección): F0–F9.
+- Priority (selección): P0, P1, P2 (clasificación inicial: F0=P0, F1–F9=P1, ver abajo).
+- GC ID (texto): GC-001…GC-096.
+- Evidence (texto/enlace).
+- Campos del sistema: Title, Assignees, Labels, Linked pull requests, Milestone, Repository, Reviewers, Parent issue, Sub-issues progress, Created, Updated, Closed.
 
-El campo Phase se obtiene del título [F0]…[F9]. GC ID se obtiene de [GC-001]…[GC-096]. Dependencias y aceptación ya están en los cuerpos de las issues.
+## Importación y clasificación
 
-## Importación y revisión
+- 60 items importados desde las issues reales del repositorio (#1–#60); sin draft items ni issues nuevas.
+- Verificación: 60 números únicos, 60 IDs de item únicos, sin faltantes ni duplicados.
+- Status: 59 en Backlog y #7/GC-007 en Done. Issue #7 cerrada; las demás siguen abiertas.
+- #7 con Evidence: https://github.com/alearra/ground-control-scooter/commit/0eb9aebc51333869df376df8f5ca11b3ce8c22b9
+- Phase y GC ID tomados del título y del marcador `ground-control:GC-XXX phase:FY` del cuerpo; los 60 coinciden con su issue.
+- Prioridad inicial por fase validada por el AI PM: F0=P0 (7 items), F1–F9=P1 (53 items). Revisar al cerrar F0; no implica orden definitivo entre todas las tareas.
 
-Crear el Project sólo si no existe uno equivalente; verificar propietario/repositorio. Enlazar al repo. Configurar estados, importar las issues existentes y comprobar el total contra docs/backlog.md. Sin evidencia de trabajo iniciado, dejarlas en Backlog.
+## Vistas
 
-Al terminar, guardar URL/ID reales aquí y en README/current-status. La creación puede hacerse por navegador autorizado o por CLI autenticada con permisos Projects; no se dispone de CLI autenticada en esta sesión. No registrar tokens en el repo.
+La API/CLI de Projects no permite crear ni modificar vistas. Solo existe la vista por defecto «View 1» (tabla). Pendiente de UI:
+
+1. Board agrupado por Status.
+2. Tabla Roadmap agrupada por Phase.
+3. Vista Current phase filtrada a `phase:F0`.
 
 ## Cierre de trabajo
 
@@ -28,6 +42,8 @@ El AI PM actualiza estados con evidencia durante las sesiones. Issue cerrada por
 
 ## Ejecución mediante OpenCode
 
-Alejandro autorizó también esta alternativa el 2026-10-19. El navegador consultado no tiene sesión GitHub iniciada; no se solicitó login porque puede ejecutarse localmente.
+Alejandro autorizó esta alternativa el 2026-10-19. Se ejecutó [prompts/001-github-project-setup.md](../prompts/001-github-project-setup.md) en OpenCode + Big Pickle: comprobación de acceso, reutilización del Project existente, importación deduplicada, campos/estados, verificación y handoff. No se registran tokens en el repo. Las vistas propuestas quedan pendientes de UI.
 
-Usar [prompts/001-github-project-setup.md](../prompts/001-github-project-setup.md) en OpenCode + Big Pickle. Incluye comprobación de acceso, creación/reutilización, importación sin duplicados, campos/estados, verificación y handoff. El Project sigue pendiente hasta recibir evidencia y URL reales. Si la CLI/API no soporta las vistas propuestas, informar esa parte como pendiente de UI.
+## Revisión AI Product Manager
+
+[Revisión del 2026-10-19](reviews/2026-10-19-project-setup.md): sin bloqueos documentales; prioridades iniciales validadas. Inspección visual parcial del tablero y auditoría de 60 items reportada por OpenCode, no repetida por API por el AI PM. Las vistas pendientes no bloquean GC-001/002.
