@@ -10,7 +10,7 @@ export function VehicleArea() {
   return (
     <section
       aria-labelledby="vehicle-heading"
-      className="flex flex-col gap-1.5 px-3 pt-2 pb-1"
+      className="flex shrink-0 flex-col gap-1.5 px-3 pt-2 pb-1"
     >
       <h2 id="vehicle-heading" className="sr-only">
         Área del vehículo
@@ -33,9 +33,7 @@ export function VehicleArea() {
           </span>
         </p>
         <div className="shrink-0 text-right">
-          <p className="text-[11px] uppercase tracking-wide text-muted">
-            Batería
-          </p>
+          <p className="text-xs uppercase tracking-wide text-muted">Batería</p>
           <p className="text-sm font-semibold text-muted">Sin registrar</p>
         </div>
       </div>

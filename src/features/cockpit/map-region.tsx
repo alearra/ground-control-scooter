@@ -17,7 +17,7 @@ export function MapRegion({ compact = false }: { compact?: boolean }) {
         <h2 id="map-heading" className="text-xs font-semibold text-fg">
           Sin ruta
         </h2>
-        <p className="text-[11px] text-muted">Mapa sin configurar</p>
+        <p className="text-xs text-muted">Mapa sin configurar</p>
       </section>
     );
   }

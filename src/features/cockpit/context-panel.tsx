@@ -65,7 +65,7 @@ export function ContextPanel({
       role="dialog"
       aria-modal="false"
       aria-labelledby="context-panel-title"
-      className="flex min-h-0 flex-1 flex-col overflow-hidden rounded-2xl border border-line bg-surface-2"
+      className="flex min-h-56 flex-1 flex-col rounded-2xl border border-line bg-surface-2"
     >
       <div className="flex shrink-0 items-center justify-between gap-3 border-b border-line p-3">
         <h2 id="context-panel-title" className="text-base font-semibold">
@@ -131,13 +131,13 @@ function VehicleDetail() {
             disponible (sin lectura del vehículo).
           </li>
         </ul>
-        <p className="mt-2 text-[11px] text-muted/80">
+        <p className="mt-2 text-xs text-muted/80">
           «Sin avisos de la aplicación» no diagnostica el scooter ni implica que
           esté en buen estado: ese diagnóstico requiere leer el vehículo.
         </p>
       </div>
 
-      <p className="text-[11px] text-muted/80">
+      <p className="text-xs text-muted/80">
         Los tres datos de energía son distintos y no se combinan en un único
         indicador. Autonomía y predicción requieren datos de consumo validados.
       </p>
@@ -188,7 +188,7 @@ function AppsDetail({
             value={`${presenceLabel(capabilities.wakeLock)} · función inactiva`}
           />
         </dl>
-        <p className="mt-2 text-[11px] text-muted/80">
+        <p className="mt-2 text-xs text-muted/80">
           Presencia de API no es permiso, conexión real ni pantalla bloqueada
           activa; ninguna función está iniciada. La conectividad es lo informado
           por el navegador, no una comprobación de acceso a Internet.

@@ -1,6 +1,6 @@
 # Estado actual — Ground Control
 
-Actualización: 2026-10-19, incremento F1 de jerarquía vertical del cockpit (PR en revisión).
+Actualización: 2026-10-19, corrección de persistencia del incremento F1 (PR #68).
 
 ## Producto y entrega
 
@@ -12,7 +12,7 @@ Base provisional del cockpit integrada por **squash merge del PR #67** (commit `
 
 Tras la revisión del AI PM, el PR #67 aplicó tres correcciones (commit 8c008c2): la barra superior etiqueta presencia de API y funciones inactivas en tono neutro y declara la conectividad como informada por el navegador; el área del vehículo separa avisos de app de «Diagnóstico del scooter: no disponible»; y el panel contextual dejó de superponerse a la barra inferior, reservando espacio real sin altura supuesta. Informe: [revisión 2026-10-19](reviews/2026-10-19-nextjs-foundation.md).
 
-Incremento F1 de jerarquía vertical (rama `feature/cockpit-vertical-hierarchy`, **PR #68 en revisión, sin merge**): compacta el cockpit y valida la vertical. La barra superior queda con hora + conectividad breve; el inventario de APIs y sus explicaciones se trasladan a «Estado del sistema» dentro del panel Aplicaciones. El área del vehículo pasa a instrumento persistente (velocidad dominante, batería secundaria y resumen de avisos que separa avisos de app de diagnóstico), fuera del área desplazable. Con panel abierto, los instrumentos persistentes y la barra de accesos siguen visibles y el detalle se desplaza dentro de su región. Verificado en 390×844 y 390×660 CSS px con Firefox headless + geckodriver (102/102 PASS), más typecheck, Biome, build, HTTP 200 y sonda 15/15. Informe: [revisión 2026-10-19](reviews/2026-10-19-cockpit-vertical-hierarchy.md). Sigue sin sensores, servicios, merge ni deploy; no cierra F1.
+Incremento F1 de jerarquía vertical (rama `feature/cockpit-vertical-hierarchy`, **PR #68 en revisión, sin merge**): compacta el cockpit y valida la vertical. La barra superior queda con hora + conectividad breve; el inventario de APIs y sus explicaciones se trasladan a «Estado del sistema» dentro del panel Aplicaciones. El área del vehículo pasa a instrumento persistente **hermano de `main`** (velocidad dominante, batería secundaria y resumen que separa avisos de app de diagnóstico); `main` contiene sólo mapa/panel y es la única región desplazable. Tras la revisión del AI PM se corrigió que `VehicleArea` seguía dentro de `main`, se eliminó el recorte silencioso del panel (`min-h-56`, sin `overflow-hidden`), los textos pequeños pasaron a rem y el ancho mínimo de accesos a `[44px]` absoluto. Verificación vigente: documento constreñido a 390 CSS px con altura de viewport 844 y 660, Firefox headless + geckodriver, **91/91 PASS** (incluye scroll forzado con instrumentos inmóviles y zoom de texto al 200 %), más typecheck, Biome, build, HTTP 200 y sonda 15/15. El 102/102 anterior corresponde al head `185d18c` y se conserva como resultado histórico, no como ejecución nueva. Informe: [revisión 2026-10-19](reviews/2026-10-19-cockpit-vertical-hierarchy.md). Sigue sin sensores, servicios, merge ni deploy; no cierra F1.
 
 ## Evidencia física disponible
 
@@ -34,4 +34,4 @@ GC-001/002/003/004 siguen abiertas. GC-003 sin lectura del scooter; GC-004 con e
 
 ## Próximo paso
 
-Revisión AI PM de #68 (head 185d18c): cambios requeridos. VehicleArea sigue dentro del main desplazable, pese a que el informe la describe fuera; corregir composición y comprobar persistencia al desplazar/enfocar paneles. Precisar evidencia: documento constreñido a 390 CSS px, no viewport real de ese ancho. Ejecutar [prompt 008](../prompts/008-cockpit-persistence-review.md) en el mismo PR. El resumen de entrega anterior registra evidencia reportada por OpenCode; no equivale a validación final del AI PM. GC-010/#8 sigue Review y abierta; #13 In progress. Sin merge ni deploy ni prueba física adicional solicitada al usuario.
+Corrección de #68 entregada (prompt 008): `VehicleArea` fuera de `main`, panel sin recorte silencioso, textos rem y accesos con ancho mínimo absoluto. Evidencia vigente **91/91** con documento de 390 px y altura de viewport 844/660, scroll forzado con instrumentos inmóviles y zoom de texto al 200 %. El 102/102 anterior (head `185d18c`) queda como resultado histórico reportado. Pendiente: revisión del AI PM en el mismo PR #68. GC-010/#8 sigue **Review** y abierta; #13 In progress. Sin merge ni deploy ni prueba física adicional solicitada al usuario.

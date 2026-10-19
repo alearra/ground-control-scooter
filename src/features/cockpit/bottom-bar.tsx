@@ -53,7 +53,7 @@ export function BottomBar({
             title={access.hint}
             onClick={() => onToggle(access.id)}
             ref={(element) => registerTrigger(access.id, element)}
-            className={`flex min-h-11 min-w-11 flex-1 flex-col items-center justify-center rounded-lg px-1 py-1.5 text-xs font-medium transition-colors ${
+            className={`flex min-h-11 min-w-[44px] flex-1 flex-col items-center justify-center rounded-lg px-1 py-1.5 text-xs font-medium transition-colors ${
               isOpen
                 ? "bg-accent/15 text-accent"
                 : "text-muted hover:bg-surface-2 hover:text-fg"

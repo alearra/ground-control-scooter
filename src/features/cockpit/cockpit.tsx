@@ -15,10 +15,11 @@ import { VehicleArea } from "./vehicle-area";
  * Layout y página siguen siendo Server Components. No inicia GPS, Bluetooth,
  * wake lock ni persistencia: sólo lee la presencia de APIs tras montar.
  *
- * Jerarquía vertical: instrumentos persistentes (barra superior e instrumentos
- * del vehículo) y barra de accesos quedan fuera de `main`, de modo que un panel
- * abierto no puede desplazarlos fuera de vista. `main` aloja la región flexible
- * mapa/panel y permite desplazamiento propio si la altura escasea.
+ * Jerarquía vertical: los instrumentos persistentes (barra superior e
+ * instrumentos del vehículo) y la barra de accesos quedan **fuera** de `main`.
+ * `main` aloja sólo la región flexible mapa/panel y es la única que se
+ * desplaza cuando falta altura o el texto está ampliado; por eso un panel
+ * abierto o su scroll nunca pueden desplazar los instrumentos fuera de vista.
  */
 export function Cockpit() {
   const [panel, setPanel] = useState<PanelId | null>(null);
@@ -59,9 +60,9 @@ export function Cockpit() {
   return (
     <div className="flex h-dvh flex-col bg-bg text-fg">
       <TopBar time={clock} online={capabilities.online} />
+      <VehicleArea />
 
       <main className="flex min-h-0 flex-1 flex-col gap-2 overflow-y-auto p-2">
-        <VehicleArea />
         <MapRegion compact={panel !== null} />
         <ContextPanel
           panel={panel}
