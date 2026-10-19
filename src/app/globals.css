@@ -1,0 +1,38 @@
+@import "tailwindcss";
+
+/* Tokens semánticos propios del cockpit. No son colores de marca finales:
+   sirven para validar jerarquía y legibilidad en F1. */
+@theme {
+  --color-bg: #070b12;
+  --color-surface: #0f1622;
+  --color-surface-2: #16202d;
+  --color-line: #243041;
+  --color-fg: #e8eef6;
+  --color-muted: #8fa0b4;
+  --color-accent: #3ba7ff;
+  --color-ok: #2fbf71;
+  --color-warn: #e6a23c;
+  --color-danger: #e5484d;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-fg);
+  font-family:
+    ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Respeto de la zona segura del iPhone en una web vertical. */
+.safe-top {
+  padding-top: max(0.5rem, env(safe-area-inset-top));
+}
+
+.safe-bottom {
+  padding-bottom: max(0.5rem, env(safe-area-inset-bottom));
+}

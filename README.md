@@ -2,7 +2,7 @@
 
 **El cockpit inteligente de mi scooter.** Experiencia de conducción inspirada en Tesla, con preparación de misiones y bitácora inspiradas en aviación y SpaceX.
 
-Proyecto personal **build in public** de Alejandro Arra para un Xiaomi Electric Scooter 6 Ultra. Estado: planificación y validación de hardware; todavía sin aplicación implementada. Ground Control y Rover 01 son nombres de trabajo.
+Proyecto personal **build in public** de Alejandro Arra para un Xiaomi Electric Scooter 6 Ultra. Estado: validación de hardware en curso y primera base provisional del cockpit. Todavía no hay telemetría real ni integración Xiaomi. Ground Control y Rover 01 son nombres de trabajo.
 
 ## Empieza aquí
 
@@ -16,7 +16,24 @@ Proyecto personal **build in public** de Alejandro Arra para un Xiaomi Electric 
 
 OpenCode con **Big Pickle** como modelo principal, según la elección de Alejandro. Cursor sólo cuando sea necesario. ChatGPT actúa como AI Product Manager: prioriza, redacta prompts, revisa evidencia y mantiene tareas y estados al retomar el proyecto.
 
-Se toma el [stack ALESAM](https://github.com/alearra/STACK-EST-NDAR-ALESAM-2026-AI-Fullstack) como referencia adaptable. El stack efectivo se decidirá tras validar plataforma y Xiaomi; el objetivo es desarrollar rápido con pocas dependencias. No hay comandos de instalación o ejecución de app todavía.
+Se toma el [stack ALESAM](https://github.com/alearra/STACK-EST-NDAR-ALESAM-2026-AI-Fullstack) como referencia adaptable. Alejandro eligió **Next.js** como base del producto; el resto de servicios se incorpora sólo cuando una necesidad real lo exija. Las decisiones viven en [ADR-0002](docs/adr/0002-nextjs-platform.md) y [RULES](RULES.md).
+
+## Stack y comandos
+
+- **Next.js 16.x** (App Router) + **React 19** + **TypeScript strict**.
+- **Tailwind CSS v4** para estilos y **Biome** para lint/formato.
+- Requiere **Node.js ≥ 20.9** y npm.
+
+```bash
+npm ci        # instala dependencias desde package-lock.json
+npm run dev   # entorno de desarrollo (next dev)
+npm run build # build de producción (next build)
+npm run start # sirve el build de producción (next start)
+npm run typecheck # tsc --noEmit
+npm run lint  # biome check
+```
+
+La base actual sólo monta el layout provisional del cockpit con datos vacíos: **no** inicia GPS, no pide ubicación ni Bluetooth y no guarda coordenadas. La sonda de capacidades del iPhone sigue publicada aparte en [alearra.github.io/ground-control-scooter](https://alearra.github.io/ground-control-scooter/) (código en [`experiments/iphone-capability-probe`](experiments/iphone-capability-probe)).
 
 ## Estado real
 
