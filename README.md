@@ -26,6 +26,8 @@ El repositorio público, el roadmap y los issues no publican ubicaciones persona
 
 ## GitHub Project
 
-Configuración preparada en [project-setup.md](docs/project-setup.md). **Pendiente de creación**: la conexión GitHub disponible para esta sesión no expone operaciones Projects. No existe aún URL de tablero verificada. Los issues sí son tareas reales del repositorio.
+[Ground Control — Roadmap 0–100](https://github.com/users/alearra/projects/6), público y enlazado a este repositorio. Contiene las 60 issues GC (#1–#60): #7/GC-007 en Done con evidencia y 59 en Backlog. Detalle y vistas pendientes en [project-setup.md](docs/project-setup.md).
+
+Los issues son tareas reales del repositorio; el tablero refleja su estado. Quedan pendientes de UI las vistas Board por Status, Roadmap por Phase y Current phase (F0).
 
 Proyecto independiente, sin afiliación con Xiaomi, Tesla o SpaceX. Licencia del código propio pendiente de elección; no se asigna una licencia de terceros al proyecto.

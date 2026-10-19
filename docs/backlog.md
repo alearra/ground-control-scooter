@@ -1,6 +1,6 @@
 # Backlog 0–100
 
-Actualización: 2026-10-19. Las 60 tareas existen como issues reales. Este índice vincula el roadmap con GitHub; el estado vigente se consulta en cada issue. GitHub Project pendiente de creación.
+Actualización: 2026-10-19. Las 60 tareas existen como issues reales. Este índice vincula el roadmap con GitHub; el estado vigente se consulta en cada issue. [GitHub Project](https://github.com/users/alearra/projects/6) creado y verificado con las 60 tareas.
 
 | Fase | ID | Issue / objetivo |
 |---|---|---|
