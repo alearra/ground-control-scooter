@@ -1,6 +1,6 @@
 # Revisión — Jerarquía vertical del cockpit (incremento F1, GC-010/#8)
 
-Fecha: 2026-10-19. Autor: OpenCode + Big Pickle. Estado: **entregado para revisión AI PM**. Sin merge ni deploy.
+Fecha: 2026-10-19. Autor: OpenCode + Big Pickle. Estado: **entregado para revisión AI PM (PR #68)**. Sin merge ni deploy.
 
 Alcance: incremento **parcial** de GC-010/#8 definido en [prompt 007](../../prompts/007-cockpit-vertical-hierarchy.md). Compacta el contenido provisional, mueve diagnósticos técnicos a detalles y valida que los instrumentos esenciales y la barra de accesos sigan visibles al abrir paneles en vertical. **No** cierra F1, GC-010 ni los flujos de Hangar/misiones/debrief.
 
