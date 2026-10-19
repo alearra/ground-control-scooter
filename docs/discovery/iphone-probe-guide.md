@@ -1,10 +1,18 @@
 # Guía de la sonda de capacidades iPhone — GC-004
 
-Fecha: 2026-10-19. Estado: **preparada, sin ejecutar**. Esta sonda es la que aporta
+Fecha: 2026-10-19. Estado: **publicada, sin ejecutar**. Esta sonda es la que aporta
 evidencia a GC-004 (y solo disponibilidad web a GC-003). No cierra ninguna issue por sí sola.
 
 Carpeta publicada: [`experiments/iphone-capability-probe/`](../../experiments/iphone-capability-probe/),
 que es la **raíz del artefacto** desplegado.
+
+## 0. Estado del despliegue
+
+- URL HTTPS verificada: <https://alearra.github.io/ground-control-scooter/>
+- Integración: PR #63 (squash `80db320`) en `main`; deploy `github-pages` con `environment_url` el anterior.
+- Run: [actions/runs/39308518283](https://github.com/alearra/ground-control-scooter/actions/runs/39308518283) (build y deploy en `success`).
+- Comprobado por HTTP: `/`, `/app.js` y `/styles.css` responden 200; HTTPS forzado (301 desde `http://`); `/docs/…`, `/prompts/…` y las pruebas responden 404 (solo se publica la carpeta de la sonda).
+- La prueba física en el iPhone 11 sigue **pendiente**; no se declara ninguna capacidad.
 
 ## 1. Publicar por HTTPS
 
@@ -19,15 +27,16 @@ La publicación se acota a esta carpeta con [`.github/workflows/pages.yml`](../.
 2. El workflow empaqueta **solo** `experiments/iphone-capability-probe` con
    `actions/upload-pages-artifact` y despliega con `actions/deploy-pages`. No publica la
    raíz del repositorio, `docs` ni archivos de pruebas.
-3. El workflow corre **solo** con push a `main` o ejecución manual sobre `main`; nunca
-   despliega código de un PR.
+3. El workflow corre **solo** con push a `main` o ejecución manual sobre `main`; los jobs
+   `build` y `deploy` exigen además `github.ref == 'refs/heads/main'`, así que un `workflow_dispatch`
+   sobre otra rama no publica. Nunca despliega código de un PR.
 4. La URL real es la salida `page_url` del paso de despliegue. **No se inventa** ni se
    asume una ruta `/experiments`: como esa carpeta es la raíz del artefacto, la URL es la
    del sitio publicado, sin subruta.
 5. Anotar la URL observada y la fecha en la evidencia.
 
-> Pages es una decisión de infraestructura y todavía **no se ha activado ni desplegado**.
-> Hasta ejecutar el deploy, la URL es un valor pendiente, no un dato confirmado.
+> Pages quedó activado con *Source: GitHub Actions* (`build_type: workflow`) y el sitio ya
+> desplegado; ver la sección 0 para la URL y el run.
 
 ## 2. Protocolo de prueba
 
