@@ -1,21 +1,31 @@
-# Estado actual
+# Estado actual — Ground Control
 
-Fecha: 2026-10-19.
+Actualización: 2026-10-19, inicio de arquitectura.
 
-## Preparado
+## Producto y entrega
 
-Repositorio público y documentación fundacional. OpenCode + Big Pickle como herramienta principal; Cursor si hace falta. ChatGPT asume AI Product Manager. Roadmap de diez fases con 60 tareas creadas en GitHub Issues (#1–#60).
+PR #65 integrado: cockpit con cinco regiones, jerarquía visual y tres conceptos de energía. [Especificación](cockpit-experience.md). Alejandro autorizó avanzar a arquitectura; la pausa previa quedó superada.
 
-## Estado de producto
+Sonda publicada por PR #63 (80db320): https://alearra.github.io/ground-control-scooter/. No es todavía el cockpit ni una integración Xiaomi. PR #64 documental de publicación permanece pendiente de conciliación; no usar sus textos anteriores como estado más reciente.
 
-Sin app implementada, scaffold, stack final o conexión Xiaomi verificada. F0 es el trabajo activo de planificación; las tareas de hardware siguen pendientes.
+## Evidencia física disponible
+
+JSON aportado por Alejandro: HTTPS; Geolocation=true, bluetooth=false, wake_lock=true; 71 callbacks GPS sin errores, 3 concesiones y 2 liberaciones Wake Lock. Ningún callback recibido con página hidden; intervalos ocultos de 33,835 y 9,652 s sin identificar condición. La prueba sustenta GPS visible, no continuidad de captura con pantalla bloqueada. No se exige otra prueba al usuario ahora; los límites quedan explícitos.
+
+iPhone 11, iOS 27.0.1 declarado, Safari, soporte vertical disponible. Xiaomi Home V11.8.204 / Argentina, Xiaomi 6 Ultra, código DDHBC01xb, firmware 2.7.1_0112.0066. Sin serie/MAC/cuenta en este repo. Inventario: [device-inventory](discovery/device-inventory.md).
+
+## Arquitectura seleccionada para iniciar
+
+[Arquitectura](architecture.md), [ADR-0001](adr/0001-local-first-web-cockpit.md) y [RULES](../RULES.md): React + Vite + TypeScript; Tailwind; diseño local-first y adaptadores GPS/manual/Xiaomi futuro. IndexedDB/Dexie y MapLibre por etapas. Backend y Capacitor no instalados ni comprometidos todavía.
+
+Esta es una selección técnica del AI PM dentro de la autorización de avanzar; no implica que cada dependencia haya sido aprobada individualmente por Alejandro. No hay scaffold de app, proveedor de rutas, origen definitivo para datos personales ni conexión Xiaomi validada.
 
 ## Seguimiento
 
-[Backlog](backlog.md) e [Issues](https://github.com/alearra/ground-control-scooter/issues). [GitHub Project](https://github.com/users/alearra/projects/6) creado y verificado: 60 items (#1–#60), #7 en Done y 59 en Backlog, con Phase, Priority y GC ID cargados; Evidence en #7. [Detalle](project-setup.md). Vistas Board/Roadmap/Current phase pendientes de UI. Prioridad inicial por fase validada por el AI PM; revisar al cerrar F0.
+[Project #6](https://github.com/users/alearra/projects/6): 60 tareas del roadmap, GC-007 completada. No se reconsultaron todos sus estados en esta actualización; no afirmar que las demás siguen en Backlog (GC-004 fue reportada Blocked a la espera de prueba, y ahora tiene evidencia parcial).
 
-GC-007 (#7): Done: repositorio e instrucciones preparados, decisiones registradas y documentación verificada en el commit 0eb9aeb; issue cerrada tras revisión documental. No equivale a cerrar F0. GC-001/002: **abiertas**, con [inventario](discovery/device-inventory.md) y [matriz de capacidades](discovery/capability-matrix.md) integrados en main (PR #62, squash f4f41d0). Datos declarados recibidos: iPhone 11, iOS 27.0.1, Safari, orientación vertical, Xiaomi Home V11.8.204 / Argentina y código DDHBC01xb. Firmware informado: 2.7.1_0112.0066. Soporte disponible y vertical confirmado; pendiente versión exacta de Safari. Ninguna capacidad física validada. [Sonda de capacidades iPhone](discovery/iphone-probe-guide.md) (GC-004) corregida según la revisión del AI PM (PR #63), **pendiente de revisión y sin ejecutar**.
+GC-001/002/003/004 siguen abiertas según último estado reportado. GC-003 sin lectura del scooter; GC-004 evidencia parcial recibida, no cierre. GC-005/006 no se cierran al elegir frontend: la vía Xiaomi/proveedor/costos siguen pendientes.
 
-## Próxima acción
+## Próximo paso
 
-Revisión AI PM realizada e integrada en main (PR #61, squash 3c583c8). [Inventario de discovery](discovery/device-inventory.md) integrado en main con la declaración de Alejandro (PR #62, squash f4f41d0). Firmware recibido: 2.7.1_0112.0066. Soporte disponible y vertical confirmado. [Sonda de capacidades iPhone](discovery/iphone-probe-guide.md) corregida según la revisión del AI PM (PR #63) con harness de simulación; falta la revisión del AI PM y **no se ha mergeado ni publicado**. Siguiente: revisión del AI PM; después, publicar por HTTPS con el workflow acotado y ejecutar la prueba física en el iPhone 11 (GC-004) para avanzar GC-001. Registrar capacidades como desconocidas hasta GC-003/004. No cerrar esas issues sin datos reales, no elegir stack ni crear la app antes de F0.
+Ejecutar [prompts/005-web-foundation.md](../prompts/005-web-foundation.md): integrar la documentación de arquitectura tras verificar su PR y preparar un scaffold mínimo con las cinco regiones, sin datos ficticios en vivo ni despliegue que reemplace la sonda. Luego revisión del AI PM; no implementar todas las fases.
