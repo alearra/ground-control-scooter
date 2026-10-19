@@ -26,6 +26,20 @@ Referencias: [workflow](development-workflow.md), [roadmap](roadmap.md) e [inves
 | D-011 | Velocidad, límite de vía, energía, potencia/regeneración, avisos y asistencias con fuente/estado verificables | Requisito condicionado por datos disponibles |
 | D-012 | Separar batería %, autonomía indicada y predicción energética del viaje | Requisito de Alejandro |
 | D-013 | Cámara y percepción de vehículos/elementos a futuro | Dirección futura solicitada; alcance técnico y fase por definir |
-| D-014 | Pausar arquitectura mientras se revisa el producto | Instrucción actual de Alejandro |
+| D-014 | Pausar arquitectura mientras se revisa el producto | Superada el 2026-10-19: Alejandro autorizó pasar a arquitectura tras aceptar la actualización |
 
 [Detalle canónico del cockpit](cockpit-experience.md). Se amplían GC-010/012/022/041/050/053 sin cerrar tareas ni prometer integración disponible. Teléfono, orientación y datos básicos del scooter ya fueron aportados; capacidades técnicas siguen limitadas a evidencia de la sonda. Climatización es referencia automotriz; no se implementa un control inexistente del scooter.
+
+## Inicio de arquitectura — 2026-10-19
+
+Alejandro aceptó la actualización del producto y autorizó avanzar a arquitectura. PR #65 integrado como b12836d. Propuesta inicial del AI PM en [ADR-0001](adr/0001-local-first-web-cockpit.md), **superada** por la decisión explícita Next.js de Alejandro en ADR-0002. Se conservan datos locales y adaptadores; persistencia/MapLibre por etapas. [RULES.md](../RULES.md) documenta excepciones al stack ALESAM.
+
+No se considera cerrado GC-006: proveedor de mapas, costos y vía Xiaomi siguen pendientes. No se implementó scaffold en esta revisión. Ninguna decisión técnica convierte las limitaciones de la sonda en capacidades disponibles.
+
+## Framework aprobado — 2026-10-19
+
+| ID | Decisión | Estado |
+|---|---|---|
+| D-015 | Next.js App Router por uniformidad con ALESAM y evolución cercana hacia plataforma con backend | Aprobada explícitamente por Alejandro |
+
+[ADR-0002](adr/0002-nextjs-platform.md) sustituye ADR-0001 en la elección de framework. Next.js 16.x, TypeScript, Tailwind v4; backend progresivo con Route Handlers/servicios. Sonda permanece en Pages; la app usará hosting apto para runtime Next.js. No se crean servicios ni infraestructura en esta actualización documental.

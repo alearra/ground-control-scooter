@@ -14,7 +14,7 @@ Una tarea activa por sesión. Una rama y un PR por cambio coherente. No desarrol
 
 ## Referencias y stack
 
-El estándar ALESAM es una referencia, no una lista obligatoria de dependencias. Mantener TypeScript estricto, organización por feature, claridad y herramientas proporcionales. Elegir framework, backend, almacenamiento y mapas con evidencia de F0. Documentar selección y excepciones en RULES.md/ADR. No instalar Redis, Supabase, IA o un backend sin necesidad identificada.
+El estándar ALESAM es una referencia, no una lista obligatoria de dependencias. Mantener TypeScript estricto, organización por feature, claridad y herramientas proporcionales. El framework fue decidido por Alejandro: Next.js 16.x App Router, ver ADR-0002 y RULES.md. Vite/ADR-0001 están superados como base del producto. Concretar backend, almacenamiento y mapas por etapas con evidencia de F0. Documentar selección y excepciones en RULES.md/ADR. No instalar Redis, Supabase, IA o un backend sin necesidad identificada.
 
 ## Ejecución
 
