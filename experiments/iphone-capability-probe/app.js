@@ -357,6 +357,8 @@
         session.wake_lock.state = "active";
         setState(el.wakeState, "ok", "Resultado observado: pantalla activa (readquirida)");
         el.wakeCount.textContent = String(session.wake_lock.grants);
+        el.wakeOn.disabled = true;
+        el.wakeOff.disabled = false;
         sentinel.addEventListener("release", function () {
           wakeSentinel = null;
           if (userWantsWakeLock) {
