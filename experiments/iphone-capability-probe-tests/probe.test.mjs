@@ -497,4 +497,7 @@ test("Estructura: recursos, ids y workflow de carpeta única", () => {
   assert.match(WORKFLOW_SRC, /pages: write/);
   assert.match(WORKFLOW_SRC, /id-token: write/);
   assert.match(WORKFLOW_SRC, /name: github-pages/);
+
+  const guards = WORKFLOW_SRC.match(/if: github\.ref == 'refs\/heads\/main'/g) || [];
+  assert.equal(guards.length, 2, "build y deploy deben exigir github.ref == refs/heads/main");
 });

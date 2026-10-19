@@ -29,3 +29,9 @@ Head revisado: 198177959af307481e4c99a6ea42bf294bc42fba.
 - Ajuste final requerido: workflow_dispatch no restringe por sí solo la rama. Añadir guardia explícita github.ref == 'refs/heads/main' para los jobs de publicación. No relajar el environment.
 
 **Decisión:** aprobado para integrar y publicar únicamente la sonda una vez aplicado y verificado ese ajuste acotado. No hace falta nueva confirmación si el diff sigue dentro de ese alcance y las verificaciones pasan. PR #63 permanece sin merge en esta revisión; Pages y prueba iPhone pendientes. No cerrar GC-003/004 por este resultado. Continuación: prompts/004-publish-iphone-probe.md.
+
+## Ajuste final aplicado — 2026-10-19
+
+- `.github/workflows/pages.yml`: añadida la guardia `github.ref == 'refs/heads/main'` en los jobs `build` y `deploy`, de modo que una ejecución `workflow_dispatch` sobre otra rama no publique.
+- Verificado: `node --check app.js` OK; harness 15/15 (incluye ahora la assert de las dos guardas); YAML válido; artefacto sigue apuntando solo a `experiments/iphone-capability-probe`; triggers `push`/`main` y dispatch; permisos mínimos y `environment: github-pages` sin cambios.
+- Sin cambios de alcance, stack, dependencias ni permisos de cuenta.
