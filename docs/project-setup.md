@@ -14,7 +14,7 @@ Fecha: 2026-10-19. Estado: **creado y verificado**. Ejecutado con OpenCode + Big
 
 - Status (selección): Backlog, Ready, In progress, Review, Blocked, Done.
 - Phase (selección): F0–F9.
-- Priority (selección): P0, P1, P2 (provisional: F0=P0, F1–F9=P1, ver abajo).
+- Priority (selección): P0, P1, P2 (clasificación inicial: F0=P0, F1–F9=P1, ver abajo).
 - GC ID (texto): GC-001…GC-096.
 - Evidence (texto/enlace).
 - Campos del sistema: Title, Assignees, Labels, Linked pull requests, Milestone, Repository, Reviewers, Parent issue, Sub-issues progress, Created, Updated, Closed.
@@ -26,7 +26,7 @@ Fecha: 2026-10-19. Estado: **creado y verificado**. Ejecutado con OpenCode + Big
 - Status: 59 en Backlog y #7/GC-007 en Done. Issue #7 cerrada; las demás siguen abiertas.
 - #7 con Evidence: https://github.com/alearra/ground-control-scooter/commit/0eb9aebc51333869df376df8f5ca11b3ce8c22b9
 - Phase y GC ID tomados del título y del marcador `ground-control:GC-XXX phase:FY` del cuerpo; los 60 coinciden con su issue.
-- Priority provisional: F0=P0 (7 items), F1–F9=P1 (53 items). No es una priorización validada por el AI PM.
+- Prioridad inicial por fase validada por el AI PM: F0=P0 (7 items), F1–F9=P1 (53 items). Revisar al cerrar F0; no implica orden definitivo entre todas las tareas.
 
 ## Vistas
 
@@ -43,3 +43,7 @@ El AI PM actualiza estados con evidencia durante las sesiones. Issue cerrada por
 ## Ejecución mediante OpenCode
 
 Alejandro autorizó esta alternativa el 2026-10-19. Se ejecutó [prompts/001-github-project-setup.md](../prompts/001-github-project-setup.md) en OpenCode + Big Pickle: comprobación de acceso, reutilización del Project existente, importación deduplicada, campos/estados, verificación y handoff. No se registran tokens en el repo. Las vistas propuestas quedan pendientes de UI.
+
+## Revisión AI Product Manager
+
+[Revisión del 2026-10-19](reviews/2026-10-19-project-setup.md): sin bloqueos documentales; prioridades iniciales validadas. Inspección visual parcial del tablero y auditoría de 60 items reportada por OpenCode, no repetida por API por el AI PM. Las vistas pendientes no bloquean GC-001/002.
