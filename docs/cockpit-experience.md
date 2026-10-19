@@ -85,4 +85,4 @@ La inferencia no requiere grabar ni subir video por defecto. Si se propone graba
 | Tres conceptos de energía y potencia/regeneración verificadas | GC-050/052/053/054/055 — F5 |
 | Percepción con cámara | Expansión futura solicitada; sin fase/fecha comprometida |
 
-Criterios F1: en vertical se reconocen las cinco regiones, se mantienen visibles velocidad y alerta relevante, las tres magnitudes de energía se distinguen por etiqueta/unidad y los datos sin fuente no aparentan estar activos. La arquitectura sigue en pausa mientras Alejandro completa la revisión de producto.
+Criterios F1: en vertical se reconocen las cinco regiones, se mantienen visibles velocidad y alerta relevante, las tres magnitudes de energía se distinguen por etiqueta/unidad y los datos sin fuente no aparentan estar activos. La arquitectura Next.js quedó definida por Alejandro en ADR-0002; la validación de experiencia continúa en F1.

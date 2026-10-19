@@ -49,5 +49,15 @@ No se creó otro Project ni se duplicaron items/issues.
 - Sin prueba en Safari físico del iPhone 11: el cockpit provisional no está validado como experiencia de conducción.
 - GC-001/002/003/004/005/006/010/020 siguen **abiertas**; este trabajo no cierra ninguna tarea.
 - La app todavía no tiene despliegue runtime; Pages sigue sirviendo únicamente la sonda y no se modificó.
-- `docs/cockpit-experience.md` (en main) conserva una línea final («La arquitectura sigue en pausa…») que quedó superada por ADR-0002; se deja señalada para conciliación del AI PM, fuera del alcance de este prompt.
+- La frase obsoleta de arquitectura pausada se concilió en esta rama durante la revisión final del AI PM; ADR-0002 conserva la decisión vigente.
 - PR #64 (documental de la sonda) sigue abierto, sin revivir sus textos.
+
+## Dictamen final del AI PM
+
+Revisión del head `b4b1b4f7d50072030208b2087e32df5acc590861`: **aprobado para integrar el alcance provisional de #67**, sin deploy ni cierre automático de tareas completas. Las tres observaciones anteriores están resueltas en código. El AI PM volvió a ejecutar Biome, TypeScript y build en su copia de revisión: todos correctos. La instalación se había reproducido sobre la misma base de dependencias; no se reinstaló porque no cambiaron. No repitió la prueba interactiva ni la sonda y no declara validación en Safari físico.
+
+Comprobación directa del Project público: GC-001/002/004/020 en Review; GC-005/006/010 en In progress; GC-003 en Backlog y GC-007 en Done. Esta consulta confirma los estados visibles de esas tareas; no es una auditoría de unicidad de los 60 items ni de todos los campos Evidence.
+
+Se corrigió la línea final obsoleta de cockpit-experience.md, sin cambiar requisitos. Limitación de producto pendiente para F1: el contenido provisional y explicaciones técnicas requieren compactación y validación de jerarquía en pantalla vertical; esta aprobación del scaffold no certifica legibilidad en conducción ni permanencia de todos los instrumentos en cualquier altura.
+
+Siguiente acción autorizada por el AI PM: OpenCode sincroniza la rama, verifica que sólo estas conciliaciones documentales se agregaron al head revisado y hace squash merge de #67 si continúa limpio y pasan checks requeridos. Sin deploy ni integración de #64. Tras integrar, actualizar current-status con SHA real y poner GC-020 en In progress, dejando #8/#13 abiertas por alcance pendiente. No iniciar otra fase automáticamente.

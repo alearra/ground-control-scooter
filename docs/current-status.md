@@ -1,6 +1,6 @@
 # Estado actual — Ground Control
 
-Actualización: 2026-10-19, correcciones de revisión y sincronización del Project.
+Actualización: 2026-10-19, aprobación AI PM de la base Next.js.
 
 ## Producto y entrega
 
@@ -32,4 +32,4 @@ GC-001/002/003/004 siguen abiertas. GC-003 sin lectura del scooter; GC-004 con e
 
 ## Próximo paso
 
-Revisión del AI PM sobre las correcciones del PR #67 (head 8c008c2) y el estado del Project: validar correcciones, evidencia y sincronización antes de decidir merge. Sin cerrar GC-003/GC-004 ni tareas de F0/F1 por este trabajo.
+AI PM aprobó el alcance provisional del PR #67 tras revisar el head b4b1b4f, reproducir TypeScript/Biome/build y confirmar los estados afectados en el Project público. Correcciones resueltas; prueba interactiva y sonda siguen como evidencia de OpenCode, sin validación Safari física. Se concilió la frase obsoleta de arquitectura pausada en cockpit-experience.md. Próximo paso: integrar #67 mediante squash, sin deploy; conservar #8/#13 y las tareas de factibilidad abiertas, y GC-020 en In progress después del merge por alcance restante. La integración aún no fue ejecutada. Luego planificar el siguiente incremento F1 antes de añadir sensores o servicios.
