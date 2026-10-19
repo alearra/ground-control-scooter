@@ -7,7 +7,7 @@ export function MapRegion() {
   return (
     <section
       aria-labelledby="map-heading"
-      className="flex min-h-0 flex-1 flex-col rounded-2xl border border-line bg-surface"
+      className="flex min-h-24 flex-1 flex-col rounded-2xl border border-line bg-surface"
     >
       <h2 id="map-heading" className="sr-only">
         Mapa

@@ -14,6 +14,10 @@ import { VehicleArea } from "./vehicle-area";
  * Límite de cliente del cockpit: es la única parte interactiva de la base.
  * Layout y página siguen siendo Server Components. No inicia GPS, Bluetooth,
  * wake lock ni persistencia: sólo lee la presencia de APIs tras montar.
+ *
+ * El panel contextual vive dentro de `main`, entre el mapa y la barra
+ * inferior, para reservar espacio real: la barra de accesos nunca queda
+ * cubierta y sigue siendo utilizable para cambiar o cerrar el panel.
  */
 export function Cockpit() {
   const [panel, setPanel] = useState<PanelId | null>(null);
@@ -55,9 +59,10 @@ export function Cockpit() {
     <div className="flex h-dvh flex-col bg-bg text-fg">
       <TopBar time={clock} capabilities={capabilities} />
 
-      <main className="flex min-h-0 flex-1 flex-col gap-2 p-2">
+      <main className="flex min-h-0 flex-1 flex-col gap-2 overflow-y-auto p-2">
         <VehicleArea />
         <MapRegion />
+        <ContextPanel panel={panel} onClose={closePanel} />
       </main>
 
       <BottomBar
@@ -65,7 +70,6 @@ export function Cockpit() {
         onToggle={togglePanel}
         registerTrigger={registerTrigger}
       />
-      <ContextPanel panel={panel} onClose={closePanel} />
     </div>
   );
 }

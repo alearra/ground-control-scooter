@@ -23,9 +23,13 @@ const PANEL_CONTENT: Record<PanelId, { title: string; body: string }> = {
 };
 
 /**
- * Panel contextual: se abre sobre el mapa sin recargar la página. Al abrir,
- * mueve el foco a su botón de cierre; Escape lo cierra. No es modal para no
- * ocultar información esencial de conducción.
+ * Panel contextual. Ocupa espacio real dentro del layout (no se superpone a la
+ * barra inferior): al abrirse, reduce el mapa, y la barra superior, el área del
+ * vehículo y la barra de accesos siguen visibles y utilizables. No es modal y
+ * no oculta instrumentos de conducción.
+ *
+ * Al abrir mueve el foco a su botón de cierre; Escape lo cierra; la devolución
+ * del foco al acceso que lo abrió la resuelve el cockpit.
  */
 export function ContextPanel({
   panel,
@@ -52,14 +56,14 @@ export function ContextPanel({
   const content = PANEL_CONTENT[panel];
 
   return (
-    <div
+    <section
       id="context-panel"
       role="dialog"
       aria-modal="false"
       aria-labelledby="context-panel-title"
-      className="fixed inset-x-0 bottom-0 z-50 mx-auto max-h-[65dvh] overflow-y-auto rounded-t-2xl border border-line bg-surface-2 p-4 shadow-xl sm:max-w-md"
+      className="flex max-h-[45dvh] min-h-0 flex-col rounded-2xl border border-line bg-surface-2 p-3"
     >
-      <div className="mb-3 flex items-center justify-between gap-3">
+      <div className="mb-2 flex items-center justify-between gap-3">
         <h2 id="context-panel-title" className="text-base font-semibold">
           {content.title}
         </h2>
@@ -67,16 +71,18 @@ export function ContextPanel({
           type="button"
           ref={closeButtonRef}
           onClick={onClose}
-          className="rounded-lg border border-line px-3 py-1.5 text-sm text-muted hover:text-fg"
+          className="shrink-0 rounded-lg border border-line px-3 py-1.5 text-sm text-muted hover:text-fg"
         >
           Cerrar
         </button>
       </div>
-      <p className="text-sm text-muted">{content.body}</p>
-      <p className="mt-3 text-[11px] text-muted/80">
-        Provisional para validar F1. Sin datos reales ni acciones sobre el
-        vehículo.
-      </p>
-    </div>
+      <div className="min-h-0 overflow-y-auto">
+        <p className="text-sm text-muted">{content.body}</p>
+        <p className="mt-3 text-[11px] text-muted/80">
+          Provisional para validar F1. Sin datos reales ni acciones sobre el
+          vehículo.
+        </p>
+      </div>
+    </section>
   );
 }

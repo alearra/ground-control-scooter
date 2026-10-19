@@ -56,7 +56,27 @@ export function VehicleArea() {
           <div className="flex flex-wrap gap-1.5">
             <StatusPill label="Viaje" value="sin iniciar" tone="neutral" />
             <StatusPill label="Ruta" value="sin destino" tone="neutral" />
-            <StatusPill label="Avisos" value="sin alertas" tone="neutral" />
+          </div>
+
+          {/* Avisos de app y diagnóstico del scooter son orígenes distintos. */}
+          <div className="rounded-xl border border-line bg-surface-2/50 p-2">
+            <p className="text-xs font-semibold text-fg">
+              Avisos y diagnóstico
+            </p>
+            <ul className="mt-1 space-y-1 text-xs text-muted">
+              <li>
+                <span className="text-fg">Avisos de la aplicación:</span> sin
+                avisos.
+              </li>
+              <li>
+                <span className="text-fg">Diagnóstico del scooter:</span> no
+                disponible (sin lectura del vehículo).
+              </li>
+            </ul>
+            <p className="mt-1 text-[11px] text-muted/80">
+              «Sin avisos de la aplicación» no diagnostica el scooter ni implica
+              que esté en buen estado.
+            </p>
           </div>
 
           <p className="text-xs text-muted">
