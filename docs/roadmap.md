@@ -18,7 +18,7 @@ Ruta crítica: F0 → F1 → F2 → F3 → F4 → F6 → F9. F5 requiere la inte
 - [ ] GC-004: probar GPS, suspensión/segundo plano, pantalla bloqueada y wake lock si está disponible.
 - [ ] GC-005: elegir PWA sola o web con puente nativo según resultados.
 - [ ] GC-006: cerrar campos soportados, fuentes, stack, proveedor de mapas/rutas, costos y alcance de primera versión.
-- [ ] GC-007: preparar este repositorio público con instrucciones y registro de decisiones.
+- [x] GC-007: preparar este repositorio público con instrucciones y registro de decisiones.
 
 **Entrega:** informe de factibilidad, matriz de capacidades y decisiones técnicas enlazadas desde este repo.
 **Aceptación:** cada requisito crítico tiene camino comprobado o bloqueo explícito. No diseñar una integración cloud por suposición.
