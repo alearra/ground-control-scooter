@@ -1,12 +1,16 @@
 # Estado actual — Ground Control
 
-Actualización: 2026-10-19, inicio de arquitectura.
+Actualización: 2026-10-19, aprobación AI PM de la base Next.js.
 
 ## Producto y entrega
 
 PR #65 integrado: cockpit con cinco regiones, jerarquía visual y tres conceptos de energía. [Especificación](cockpit-experience.md). Alejandro autorizó avanzar a arquitectura; la pausa previa quedó superada.
 
 Sonda publicada por PR #63 (80db320): https://alearra.github.io/ground-control-scooter/. No es todavía el cockpit ni una integración Xiaomi. PR #64 documental de publicación permanece pendiente de conciliación; no usar sus textos anteriores como estado más reciente.
+
+Base provisional del cockpit en PR #67 (rama `feature/nextjs-foundation`): Next.js 16 App Router con las cinco regiones (barra superior, área del vehículo, mapa, barra inferior, panel contextual) y estado inicial vacío y explícito. Sólo lectura de presencia de APIs tras montar; sin GPS, ubicación, Bluetooth ni persistencia. La sonda sigue publicada por Pages, que no cambió.
+
+Tras la revisión del AI PM, el PR #67 aplicó tres correcciones (commit 8c008c2): la barra superior etiqueta presencia de API y funciones inactivas en tono neutro y declara la conectividad como informada por el navegador; el área del vehículo separa avisos de app de «Diagnóstico del scooter: no disponible»; y el panel contextual dejó de superponerse a la barra inferior, reservando espacio real sin altura supuesta. Informe: [revisión 2026-10-19](reviews/2026-10-19-nextjs-foundation.md).
 
 ## Evidencia física disponible
 
@@ -18,14 +22,14 @@ iPhone 11, iOS 27.0.1 declarado, Safari, soporte vertical disponible. Xiaomi Hom
 
 [Arquitectura](architecture.md), [ADR-0002](adr/0002-nextjs-platform.md) y [RULES](../RULES.md): **Next.js 16.x App Router + React + TypeScript**, por decisión explícita de Alejandro: uniformidad con ALESAM y evolución cercana a plataforma con backend. Tailwind; datos locales y adaptadores GPS/manual/Xiaomi futuro. IndexedDB/Dexie y MapLibre por etapas. Backend Next.js preparado por diseño, sin endpoints implementados todavía. Capacitor no seleccionado/instalado.
 
-La elección del framework Next.js fue aprobada explícitamente por Alejandro; otros servicios se incorporan según necesidad. Vite queda descartado como base del producto. No hay scaffold de app, proveedor de rutas, origen definitivo para datos personales ni conexión Xiaomi validada.
+La elección del framework Next.js fue aprobada explícitamente por Alejandro; otros servicios se incorporan según necesidad. Vite queda descartado como base del producto. Existe una base de app provisional con layout y placeholders, verificada con `npm ci`, typecheck, Biome y build; siguen pendientes el proveedor de rutas, el origen definitivo para datos personales y la conexión Xiaomi validada. El despliegue runtime de la app no se configuró todavía: Pages sigue sirviendo únicamente la sonda.
 
 ## Seguimiento
 
-[Project #6](https://github.com/users/alearra/projects/6): 60 tareas del roadmap, GC-007 completada. No se reconsultaron todos sus estados en esta actualización; no afirmar que las demás siguen en Backlog (GC-004 fue reportada Blocked a la espera de prueba, y ahora tiene evidencia parcial).
+[Project #6](https://github.com/users/alearra/projects/6): 60 tareas del roadmap. Sincronizado con escrituras acotadas, reutilizando items y conservando Phase/Priority/GC ID: GC-001/#1 y GC-002/#2 en **Review** (inventario declarado); GC-003/#3 sigue abierta sin cambio; GC-004/#4 en **Review** por evidencia parcial (ya no Blocked); GC-005/#5 y GC-006/#6 en **In progress**; GC-007/#7 **Done**; GC-010/#8 en **In progress**; GC-020/#13 en **Review**. Todos con Evidence enlazada. La API de Projects permitió escribir sin errores; no se creó otro Project ni se duplicaron items.
 
-GC-001/002/003/004 siguen abiertas según último estado reportado. GC-003 sin lectura del scooter; GC-004 evidencia parcial recibida, no cierre. GC-005/006 no se cierran al elegir frontend: la vía Xiaomi/proveedor/costos siguen pendientes.
+GC-001/002/003/004 siguen abiertas. GC-003 sin lectura del scooter; GC-004 con evidencia parcial (GPS visible; continuidad con pantalla bloqueada no validada), no cierre. GC-005/006 no se cierran: elegir frontend no resuelve PWA vs puente nativo ni el proveedor de mapas/costos. Se corrigió el cuerpo obsoleto de #8 (enlazaba rama antigua y afirmaba arquitectura pausada).
 
 ## Próximo paso
 
-Ejecutar [prompts/005-web-foundation.md](../prompts/005-web-foundation.md): integrar la documentación de arquitectura tras verificar su PR y preparar un scaffold mínimo con las cinco regiones, sin datos ficticios en vivo ni despliegue que reemplace la sonda. Luego revisión del AI PM; no implementar todas las fases.
+AI PM aprobó el alcance provisional del PR #67 tras revisar el head b4b1b4f, reproducir TypeScript/Biome/build y confirmar los estados afectados en el Project público. Correcciones resueltas; prueba interactiva y sonda siguen como evidencia de OpenCode, sin validación Safari física. Se concilió la frase obsoleta de arquitectura pausada en cockpit-experience.md. Próximo paso: integrar #67 mediante squash, sin deploy; conservar #8/#13 y las tareas de factibilidad abiertas, y GC-020 en In progress después del merge por alcance restante. La integración aún no fue ejecutada. Luego planificar el siguiente incremento F1 antes de añadir sensores o servicios.

@@ -5,8 +5,13 @@
 # Dependencies / generated artifacts
 node_modules/
 dist/
+out/
+build/
 .next/
 coverage/
+*.tsbuildinfo
+next-env.d.ts
+.vercel/
 # Personal telemetry and exports
 telemetry/
 recordings/
